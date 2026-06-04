@@ -177,25 +177,81 @@ export default function Home() {
 
           <div className="hero-photo-new">
             <motion.div
-              className="photo-brutalist-wrapper"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+              className="glass-photo-container"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              {/* Zigzag */}
-              <div className="zigzag">
-                <svg width="60" height="40" viewBox="0 0 60 40" fill="none" stroke="#171717" strokeWidth="5" strokeLinejoin="miter">
-                  <polyline points="2,30 18,10 32,30 48,10 62,30" />
-                </svg>
+              {/* Animated gradient blobs */}
+              <div className="glass-blobs" aria-hidden="true">
+                <motion.div
+                  className="glass-blob blob-1"
+                  animate={{ x: [0, 30, -20, 0], y: [0, -25, 15, 0], scale: [1, 1.15, 0.95, 1] }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <motion.div
+                  className="glass-blob blob-2"
+                  animate={{ x: [0, -25, 20, 0], y: [0, 20, -30, 0], scale: [1, 0.9, 1.1, 1] }}
+                  transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
+                />
+                <motion.div
+                  className="glass-blob blob-3"
+                  animate={{ x: [0, 15, -15, 0], y: [0, -15, 25, 0], scale: [1, 1.1, 0.95, 1] }}
+                  transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
+                />
               </div>
 
-              {/* The photo frame */}
-              <motion.div 
-                className="photo-brutalist"
-                whileHover={{ scale: 1.03, y: -5, boxShadow: "25px 25px 0px #00e676" }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              {/* Glass card */}
+              <motion.div
+                className="glass-card"
+                whileHover={{ y: -8, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 200, damping: 20 }}
               >
-                <Image src="/profile.png" alt="Galih Tri Risky Andiko" width={380} height={440} priority className="photo-img" />
+                <div className="glass-card-inner">
+                  <Image src="/profile.png" alt="Galih Tri Risky Andiko" width={380} height={440} priority className="glass-photo-img" />
+                  <div className="glass-shimmer" aria-hidden="true" />
+                </div>
+
+                {/* Bottom info bar */}
+                <div className="glass-info-bar">
+                  <div className="glass-status">
+                    <span className="glass-status-dot" />
+                    Open to work
+                  </div>
+                  <div className="glass-location">📍 Indonesia</div>
+                </div>
+              </motion.div>
+
+              {/* Floating stat pill — top right */}
+              <motion.div
+                className="glass-pill glass-pill-exp"
+                initial={{ opacity: 0, scale: 0.5, x: 30 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
+              >
+                <span className="pill-value">5+</span>
+                <span className="pill-label">Years Exp.</span>
+              </motion.div>
+
+              {/* Floating stat pill — bottom left */}
+              <motion.div
+                className="glass-pill glass-pill-projects"
+                initial={{ opacity: 0, scale: 0.5, x: -30 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                transition={{ delay: 1.0, type: "spring", stiffness: 200 }}
+              >
+                <span className="pill-value">40+</span>
+                <span className="pill-label">Projects</span>
+              </motion.div>
+
+              {/* Orbit ring */}
+              <motion.div
+                className="glass-orbit"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                aria-hidden="true"
+              >
+                <span className="orbit-dot" />
               </motion.div>
             </motion.div>
           </div>

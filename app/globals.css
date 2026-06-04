@@ -114,7 +114,7 @@ img { display: block; }
 @media (max-width: 968px) {
   .hero-inner { grid-template-columns: 1fr; gap: 48px; text-align: center; }
   .hero-text { order: 2; }
-  .hero-photo { order: 1; justify-self: center; }
+  .hero-photo-new { order: 1; justify-self: center; }
   .hero-ctas { justify-content: center; }
   .hero-socials { justify-content: center; }
   .hero-desc { margin-left: auto; margin-right: auto; }
@@ -198,40 +198,179 @@ img { display: block; }
 .social-icon.filled:hover { background: var(--accent-dark); border-color: var(--accent-dark); }
 
 /* ══════════════════════════════════════════════════════
-   100% BRUTALIST HERO PHOTO
+   GLASSMORPHISM HERO PHOTO
    ══════════════════════════════════════════════════════ */
+@keyframes shimmer {
+  0% { transform: translateX(-100%) rotate(15deg); }
+  100% { transform: translateX(200%) rotate(15deg); }
+}
+@keyframes float-gentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
 .hero-photo-new {
   position: relative; display: flex; justify-content: center; align-items: center;
-  width: 100%; height: 500px;
+  width: 100%; min-height: 480px;
 }
-.photo-brutalist-wrapper {
+
+.glass-photo-container {
   position: relative;
-  width: 340px; height: 380px;
+  width: 350px;
+  display: flex; justify-content: center; align-items: center;
 }
-@media (max-width: 768px) { .photo-brutalist-wrapper { width: 300px; height: 340px; } }
+@media (max-width: 768px) { .glass-photo-container { width: 290px; } }
 
-/* The photo frame */
-.photo-brutalist {
+/* ── Animated blobs ── */
+.glass-blobs {
+  position: absolute; inset: -60px; z-index: 0;
+  filter: blur(60px); opacity: 0.6;
+  pointer-events: none;
+}
+.glass-blob {
+  position: absolute; border-radius: 50%;
+}
+.blob-1 {
+  width: 200px; height: 200px;
+  background: linear-gradient(135deg, #00e68a, #00cfb4);
+  top: -20px; left: -30px;
+}
+.blob-2 {
+  width: 170px; height: 170px;
+  background: linear-gradient(135deg, #00b4d8, #48cae4);
+  bottom: -10px; right: -20px;
+}
+.blob-3 {
+  width: 130px; height: 130px;
+  background: linear-gradient(135deg, #a8e6cf, #00e68a);
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+@media (max-width: 768px) {
+  .glass-blobs { inset: -40px; filter: blur(50px); }
+  .blob-1 { width: 150px; height: 150px; }
+  .blob-2 { width: 130px; height: 130px; }
+  .blob-3 { width: 100px; height: 100px; }
+}
+
+/* ── Glass card ── */
+.glass-card {
   position: relative; z-index: 2;
-  width: 100%; height: 100%;
-  background: #ebebeb;
-  border: 6px solid #171717;
-  box-shadow: 20px 20px 0px var(--accent); 
+  width: 100%;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+  border-radius: 24px;
+  border: 1.5px solid rgba(255, 255, 255, 0.5);
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(0, 230, 138, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
   overflow: hidden;
+  transition: box-shadow 0.4s ease;
 }
-@media (max-width: 768px) { .photo-brutalist { border-width: 4px; box-shadow: 12px 12px 0px var(--accent); } }
+.glass-card:hover {
+  box-shadow:
+    0 20px 60px rgba(0, 230, 138, 0.15),
+    0 0 0 1px rgba(0, 230, 138, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
 
-.photo-img {
+.glass-card-inner {
+  position: relative; overflow: hidden;
+  aspect-ratio: 3 / 3.5;
+}
+
+.glass-photo-img {
   width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: bottom center;
+  object-fit: cover; object-position: top center;
+  display: block;
 }
 
-/* Zigzag */
-.zigzag {
-  position: absolute;
-  top: -10px; left: -30px;
-  z-index: 3;
+/* ── Shimmer effect ── */
+.glass-shimmer {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 60%
+  );
+  animation: shimmer 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* ── Bottom info bar ── */
+.glass-info-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 14px 20px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.5);
+}
+.glass-status {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 0.8rem; font-weight: 700; color: #171717;
+}
+.glass-status-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px rgba(0, 230, 138, 0.6);
+  animation: float-gentle 2s ease-in-out infinite;
+}
+.glass-location {
+  font-size: 0.78rem; font-weight: 600; color: #525252;
+}
+
+/* ── Floating glass pills ── */
+.glass-pill {
+  position: absolute; z-index: 10;
+  display: flex; align-items: center; gap: 8px;
+  padding: 10px 18px;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+  border-radius: 50px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+  animation: float-gentle 5s ease-in-out infinite;
+}
+.pill-value {
+  font-size: 1.2rem; font-weight: 900;
+  color: var(--accent-dark);
+}
+.pill-label {
+  font-size: 0.7rem; font-weight: 700;
+  color: #525252; text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.glass-pill-exp {
+  top: 10px; right: -40px;
+  animation-delay: 0s;
+}
+.glass-pill-projects {
+  bottom: 50px; left: -45px;
+  animation-delay: 1.5s;
+}
+@media (max-width: 768px) {
+  .glass-pill-exp { right: -15px; top: 5px; padding: 8px 14px; }
+  .glass-pill-projects { left: -15px; bottom: 40px; padding: 8px 14px; }
+  .pill-value { font-size: 1rem; }
+  .pill-label { font-size: 0.6rem; }
+}
+
+/* ── Orbit ring ── */
+.glass-orbit {
+  position: absolute; z-index: 1;
+  inset: -30px;
+  border: 1.5px dashed rgba(0, 230, 138, 0.2);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.orbit-dot {
+  position: absolute; top: -4px; left: 50%;
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 12px rgba(0, 230, 138, 0.5);
 }
 
 .marquee-wrapper {
