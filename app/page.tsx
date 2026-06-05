@@ -194,7 +194,7 @@ export default function Home() {
               <div className="corner corner-tr" />
               <div className="corner corner-bl" />
               <div className="corner corner-br" />
-              Hi everyone 👋, I&apos;am David Franco
+              Hi everyone 👋, I&apos;am Galih Tri Risky Andiko
             </motion.div>
             
             <motion.h1 className="hero-title" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}>
@@ -205,7 +205,7 @@ export default function Home() {
                 animate={{ opacity: 1, filter: "blur(0px)" }}
                 transition={{ duration: 0.8, delay: 1.5 }}
               >
-                Crafting Digital Experiences.
+                Building Digital Products.
               </motion.span>
             </motion.h1>
 
