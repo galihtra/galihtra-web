@@ -133,6 +133,25 @@ export default function Home() {
     experience: "5+ tahun membangun solusi digital untuk berbagai industri. Fokus pada maintainable code, performa, dan user experience.",
   };
 
+  const [typed1, setTyped1] = useState("");
+  const text1 = "Software Developer";
+
+  useEffect(() => {
+    let current1 = 0;
+    
+    const timeout = setTimeout(() => {
+      const interval1 = setInterval(() => {
+        current1++;
+        setTyped1(text1.substring(0, current1));
+        if (current1 >= text1.length) {
+          clearInterval(interval1);
+        }
+      }, 80);
+    }, 400);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
     <>
       {/* ════════ NAVBAR ════════ */}
@@ -179,8 +198,15 @@ export default function Home() {
             </motion.div>
             
             <motion.h1 className="hero-title" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}>
-              Software Developer <br/>
-              Based in Indonesia
+              <span className="text-primary">{typed1}<span className="typing-cursor">|</span></span>
+              <motion.span 
+                className="text-gradient-cool"
+                initial={{ opacity: 0, filter: "blur(10px)" }}
+                animate={{ opacity: 1, filter: "blur(0px)" }}
+                transition={{ duration: 0.8, delay: 1.5 }}
+              >
+                Crafting Digital Experiences.
+              </motion.span>
             </motion.h1>
 
             <motion.p className="hero-desc" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}>
