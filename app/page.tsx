@@ -194,7 +194,7 @@ export default function Home() {
 
             <motion.div className="hero-socials" initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.4 }}>
               <span className="hero-socials-label">Find me on:</span>
-              <a href="#" className="social-icon" aria-label="Dribbble"><DribbbleIcon /></a>
+              <a href="#" className="social-icon" aria-label="GitHub"><GithubIcon /></a>
               <a href="#" className="social-icon" aria-label="Instagram"><InstagramIcon /></a>
               <a href="#" className="social-icon filled" aria-label="LinkedIn"><LinkedinIcon /></a>
             </motion.div>
