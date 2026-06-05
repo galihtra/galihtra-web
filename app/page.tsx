@@ -99,11 +99,29 @@ export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("education");
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 20);
     window.addEventListener("scroll", fn);
     return () => window.removeEventListener("scroll", fn);
+  }, []);
+
+  /* Track active section via IntersectionObserver */
+  useEffect(() => {
+    const sections = ["home", "about", "services", "projects", "contact"];
+    const observers: IntersectionObserver[] = [];
+    sections.forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveSection(id); },
+        { rootMargin: "-40% 0px -55% 0px" }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
   }, []);
 
   const navLinks = ["Home", "About", "Services", "Projects", "Contact"];
@@ -119,20 +137,27 @@ export default function Home() {
     <>
       {/* ════════ NAVBAR ════════ */}
       <header className={`navbar ${scrolled ? "scrolled" : ""}`}>
-        <div className="navbar-inner">
-          <a href="#home" className="logo" id="logo">
-            <div className="logo-diamond"><ChevronIcon /></div>
-            <span className="logo-name">galihtra</span>
-          </a>
-          <nav className="nav-links">
-            {navLinks.map((l, i) => (
-              <a key={l} href={`#${l.toLowerCase()}`} className={`nav-link ${i === 0 ? "active" : ""}`}>{l}</a>
-            ))}
-          </nav>
-          <button className={`hamburger ${menuOpen ? "active" : ""}`} onClick={() => setMenuOpen(!menuOpen)}>
-            <span /><span /><span />
-          </button>
-        </div>
+        <nav className="navbar-glass">
+          {navLinks.map((l) => {
+            const id = l.toLowerCase();
+            const isActive = activeSection === id;
+            return (
+              <a key={l} href={`#${id}`} className={`nav-link ${isActive ? "active" : ""}`}>
+                <span className="nav-link-label">{l}</span>
+                {isActive && (
+                  <motion.span
+                    className="nav-dot"
+                    layoutId="navDot"
+                    transition={{ type: "spring", stiffness: 400, damping: 28 }}
+                  />
+                )}
+              </a>
+            );
+          })}
+        </nav>
+        <button className={`hamburger ${menuOpen ? "active" : ""}`} onClick={() => setMenuOpen(!menuOpen)}>
+          <span /><span /><span />
+        </button>
       </header>
 
       <div className={`mobile-overlay ${menuOpen ? "open" : ""}`}>
