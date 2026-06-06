@@ -94,6 +94,20 @@ function FadeSection({ children, className, id, delay = 0 }: { children: React.R
   );
 }
 
+/* ── Additional Icons for About ─────────────────────────── */
+const BriefcaseIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /></svg>
+);
+const GraduationIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z" /><path d="M6 12v5c0 2 2 3 6 3s6-1 6-3v-5" /></svg>
+);
+const CodeBracketIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg>
+);
+const CheckCircleIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
+);
+
 /* ══ Main Component ═══════════════════════════════════════ */
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -127,11 +141,64 @@ export default function Home() {
   const navLinks = ["Home", "About", "Services", "Projects", "Contact"];
   const marqueeSkills = ["Frontend Dev", "Mobile App", "Backend API", "UI/UX", "System Design"];
 
-  const tabs: Record<string, string> = {
-    education: "Lulusan Ilmu Komputer dengan fondasi kuat di data structure, algoritma, dan arsitektur software. Terus belajar lewat eksplorasi open-source.",
-    skills: "React, Next.js, TypeScript, Flutter, Node.js, PostgreSQL, Docker, AWS. Terbiasa membangun aplikasi robust dari frontend hingga backend.",
-    experience: "5+ tahun membangun solusi digital untuk berbagai industri. Fokus pada maintainable code, performa, dan user experience.",
-  };
+  const aboutTabs = [
+    { key: "education", label: "Education", icon: <GraduationIcon /> },
+    { key: "skills", label: "Skills", icon: <CodeBracketIcon /> },
+    { key: "experience", label: "Experience", icon: <BriefcaseIcon /> },
+  ] as const;
+
+  const educationData = [
+    {
+      degree: "Bachelor of Computer Science",
+      institution: "Universitas — Ilmu Komputer",
+      period: "2016 — 2020",
+      highlights: [
+        "Fokus pada Data Structures, Algorithms & Software Architecture",
+        "Aktif di komunitas open-source & kompetisi programming",
+        "Riset di bidang Human-Computer Interaction",
+      ],
+    },
+  ];
+
+  const skillCategories = [
+    {
+      category: "Frontend",
+      skills: ["React", "Next.js", "TypeScript", "HTML/CSS", "Tailwind CSS"],
+    },
+    {
+      category: "Mobile",
+      skills: ["Flutter", "Dart", "React Native", "Android SDK"],
+    },
+    {
+      category: "Backend",
+      skills: ["Node.js", "Express", "PostgreSQL", "MongoDB", "REST API"],
+    },
+    {
+      category: "DevOps & Tools",
+      skills: ["Docker", "AWS", "Git", "CI/CD", "Firebase"],
+    },
+  ];
+
+  const experienceData = [
+    {
+      role: "Senior Software Developer",
+      company: "Freelance & Contract",
+      period: "2022 — Sekarang",
+      desc: "Merancang dan mengembangkan solusi digital end-to-end untuk berbagai klien, mulai dari startup hingga enterprise. Fokus pada arsitektur scalable dan user experience premium.",
+    },
+    {
+      role: "Full-Stack Developer",
+      company: "Digital Agency",
+      period: "2020 — 2022",
+      desc: "Bertanggung jawab atas pengembangan web dan mobile app untuk klien di sektor e-commerce, edukasi, dan fintech. Memimpin tim kecil dalam menerapkan agile workflow.",
+    },
+    {
+      role: "Junior Developer",
+      company: "Software House",
+      period: "2018 — 2020",
+      desc: "Memulai karier profesional dengan membangun fitur frontend dan integrasi API. Berkontribusi pada 10+ proyek dan mengasah skill di React dan Flutter.",
+    },
+  ];
 
   const [typed1, setTyped1] = useState("");
   const text1 = "Software Developer";
@@ -322,31 +389,156 @@ export default function Home() {
 
       {/* ════════ ABOUT ════════ */}
       <section className="about" id="about">
-        <FadeSection className="about-inner">
-          <p className="about-quote">
-            Membangun software yang scalable, user-friendly, dan memberikan pengalaman digital yang seamless!
-          </p>
+        <div className="about-container">
+          {/* Section header */}
+          <FadeSection className="section-header">
+            <div className="section-tag"><span className="section-tag-dot" /> About Me</div>
+            <h2 className="section-title">Passionate About Crafting<br />Digital Experiences</h2>
+            <p className="about-subtitle">
+              Dengan pengalaman lebih dari 5 tahun di industri teknologi, saya mengkhususkan diri dalam 
+              membangun solusi digital yang scalable, performant, dan memberikan pengalaman pengguna yang luar biasa.
+            </p>
+          </FadeSection>
 
-          <div className="about-tabs">
-            {([["education", "Education"], ["skills", "Skills"], ["experience", "Work Experience"]] as const).map(([key, label]) => (
-              <button key={key} className={`about-tab ${activeTab === key ? "active" : ""}`} onClick={() => setActiveTab(key)}>
-                {activeTab === key && <span className="tab-dot" />}
-                {label}
-              </button>
-            ))}
-          </div>
+          {/* Glass summary card */}
+          <FadeSection delay={0.1}>
+            <div className="about-glass-card">
+              <div className="about-glass-blobs" aria-hidden="true">
+                <div className="about-blob about-blob-1" />
+                <div className="about-blob about-blob-2" />
+              </div>
+              <div className="about-glass-content">
+                <div className="about-philosophy">
+                  <span className="about-philosophy-label">💡 My Philosophy</span>
+                  <p className="about-philosophy-text">
+                    Saya percaya bahwa software yang hebat bukan hanya soal kode yang berjalan, 
+                    tetapi tentang menciptakan pengalaman digital yang <strong>intuitif</strong>, <strong>elegan</strong>, dan 
+                    memberikan <strong>dampak nyata</strong> bagi penggunanya. Setiap proyek adalah kesempatan untuk 
+                    mengubah ide menjadi solusi yang bermakna.
+                  </p>
+                </div>
+                <div className="about-highlights-row">
+                  <div className="about-highlight-item">
+                    <CheckCircleIcon />
+                    <span>Clean & maintainable code</span>
+                  </div>
+                  <div className="about-highlight-item">
+                    <CheckCircleIcon />
+                    <span>User-centered design approach</span>
+                  </div>
+                  <div className="about-highlight-item">
+                    <CheckCircleIcon />
+                    <span>Agile development workflow</span>
+                  </div>
+                  <div className="about-highlight-item">
+                    <CheckCircleIcon />
+                    <span>Continuous learning mindset</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FadeSection>
 
+          {/* Tabs */}
+          <FadeSection delay={0.2}>
+            <div className="about-tabs">
+              {aboutTabs.map(({ key, label, icon }) => (
+                <button key={key} className={`about-tab ${activeTab === key ? "active" : ""}`} onClick={() => setActiveTab(key)}>
+                  {icon}
+                  {label}
+                </button>
+              ))}
+            </div>
+          </FadeSection>
+
+          {/* Tab content */}
           <AnimatePresence mode="wait">
-            <motion.p
+            <motion.div
               key={activeTab}
-              className="about-desc"
-              initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.3 }}
+              className="about-tab-content"
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
-              {tabs[activeTab]}
-            </motion.p>
+              {activeTab === "education" && (
+                <div className="about-education">
+                  {educationData.map((edu, i) => (
+                    <div key={i} className="edu-card">
+                      <div className="edu-header">
+                        <div>
+                          <h3 className="edu-degree">{edu.degree}</h3>
+                          <p className="edu-institution">{edu.institution}</p>
+                        </div>
+                        <span className="edu-period">{edu.period}</span>
+                      </div>
+                      <ul className="edu-highlights">
+                        {edu.highlights.map((h, j) => (
+                          <li key={j}>
+                            <CheckCircleIcon />
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {activeTab === "skills" && (
+                <div className="about-skills">
+                  {skillCategories.map((cat, i) => (
+                    <div key={i} className="skill-category">
+                      <h4 className="skill-category-label">{cat.category}</h4>
+                      <div className="skill-tags">
+                        {cat.skills.map((skill, j) => (
+                          <span key={j} className="skill-tag">{skill}</span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+
+              {activeTab === "experience" && (
+                <div className="about-experience">
+                  {experienceData.map((exp, i) => (
+                    <div key={i} className="exp-card">
+                      <div className="exp-timeline-dot" />
+                      <div className="exp-content">
+                        <div className="exp-header">
+                          <div>
+                            <h3 className="exp-role">{exp.role}</h3>
+                            <p className="exp-company">{exp.company}</p>
+                          </div>
+                          <span className="exp-period">{exp.period}</span>
+                        </div>
+                        <p className="exp-desc">{exp.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </motion.div>
           </AnimatePresence>
-        </FadeSection>
+
+          {/* Stats row */}
+          <FadeSection delay={0.3}>
+            <div className="about-stats">
+              {[
+                { value: "5+", label: "Tahun Pengalaman" },
+                { value: "40+", label: "Proyek Selesai" },
+                { value: "20+", label: "Klien Puas" },
+                { value: "99%", label: "Tingkat Kepuasan" },
+              ].map((stat, i) => (
+                <div key={i} className="about-stat-item">
+                  <span className="about-stat-value">{stat.value}</span>
+                  <span className="about-stat-label">{stat.label}</span>
+                </div>
+              ))}
+            </div>
+          </FadeSection>
+        </div>
       </section>
 
       {/* ════════ SERVICES ════════ */}
