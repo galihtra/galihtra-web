@@ -149,13 +149,14 @@ export default function Home() {
 
   const educationData = [
     {
-      degree: "Bachelor of Computer Science",
-      institution: "Universitas — Ilmu Komputer",
-      period: "2016 — 2020",
+      degree: "Diploma IV — Software Engineering",
+      institution: "Politeknik Negeri Batam — Faculty of Engineering",
+      period: "2022 — 2026",
       highlights: [
-        "Fokus pada Data Structures, Algorithms & Software Architecture",
-        "Aktif di komunitas open-source & kompetisi programming",
-        "Riset di bidang Human-Computer Interaction",
+        "GPA: 3.99 / 4.00 — Highest GPA in Software Engineering",
+        "Focus on Web Development, Mobile Development & UI/UX Design",
+        "Active in open-source community & programming competitions",
+        "Finalist at KMIPN 5 Hackathon & Healthkathon 2024 by BPJS Kesehatan",
       ],
     },
   ];
@@ -163,40 +164,52 @@ export default function Home() {
   const skillCategories = [
     {
       category: "Frontend",
-      skills: ["React", "Next.js", "TypeScript", "HTML/CSS", "Tailwind CSS"],
+      skills: ["HTML", "CSS", "JavaScript", "PHP", "Laravel"],
     },
     {
       category: "Mobile",
-      skills: ["Flutter", "Dart", "React Native", "Android SDK"],
+      skills: ["Flutter", "Dart", "Kotlin", "XML", "Android Studio"],
     },
     {
-      category: "Backend",
-      skills: ["Node.js", "Express", "PostgreSQL", "MongoDB", "REST API"],
+      category: "Backend & Database",
+      skills: ["SQL", "NoSQL", "Firebase", "PostgreSQL", "REST API"],
     },
     {
-      category: "DevOps & Tools",
-      skills: ["Docker", "AWS", "Git", "CI/CD", "Firebase"],
+      category: "Tools & Platform",
+      skills: ["Git", "GitHub", "Figma", "Postman", "Google Cloud", "AWS"],
     },
   ];
 
   const experienceData = [
     {
-      role: "Senior Software Developer",
-      company: "Freelance & Contract",
-      period: "2022 — Sekarang",
-      desc: "Merancang dan mengembangkan solusi digital end-to-end untuk berbagai klien, mulai dari startup hingga enterprise. Fokus pada arsitektur scalable dan user experience premium.",
+      role: "Mobile Developer",
+      company: "PT. Sat Nusapersada Tbk",
+      period: "Jul 2025 — May 2026",
+      desc: "Developed and maintained the internal corporate mobile application using Flutter. Handled end-to-end front-end development, implemented biometric authentication, and architected middleware workflows using N8N for PostgreSQL and OneSignal push notifications.",
     },
     {
-      role: "Full-Stack Developer",
-      company: "Digital Agency",
-      period: "2020 — 2022",
-      desc: "Bertanggung jawab atas pengembangan web dan mobile app untuk klien di sektor e-commerce, edukasi, dan fintech. Memimpin tim kecil dalam menerapkan agile workflow.",
+      role: "Mobile Developer",
+      company: "Sekretariat Jenderal DPR RI",
+      period: "Aug 2024 — Dec 2024",
+      desc: "Built a cross-platform attendance tracking app using Flutter. Led end-to-end development from UI/UX design in Figma to deployment. Created a GPS-integrated attendance system and a digital learning module (LMS) with quizzes and progress tracking.",
     },
     {
-      role: "Junior Developer",
-      company: "Software House",
-      period: "2018 — 2020",
-      desc: "Memulai karier profesional dengan membangun fitur frontend dan integrasi API. Berkontribusi pada 10+ proyek dan mengasah skill di React dan Flutter.",
+      role: "Junior Software Developer",
+      company: "PT. Deva Indonesia Group",
+      period: "Jun 2024 — Aug 2024",
+      desc: "Developed, maintained, and optimized company websites using WordPress. Collaborated with design and marketing teams to implement new features and ensure responsive, cross-browser compatible experiences.",
+    },
+    {
+      role: "Flutter Developer",
+      company: "PT. Sinergi Inovasi Tekno (SINTECH)",
+      period: "Apr 2024 — Jun 2024",
+      desc: "Designed the UI for Foochi Food Delivery application in Figma and developed features including profile, order, notifications, and menu pages using Flutter.",
+    },
+    {
+      role: "Mobile Developer",
+      company: "CIRCLE Creative Solution",
+      period: "Jun 2021 — Aug 2021",
+      desc: "Practiced Flutter engineering with attention to code quality and mobile performance. Developed a VPN Network app using Kotlin & Firebase, and designed a wholesale application in Flutter.",
     },
   ];
 
@@ -376,15 +389,9 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ════════ MARQUEE ════════ */}
-      <div className="marquee-wrapper">
-        <section className="marquee">
-          <div className="marquee-track">
-            {[...marqueeSkills, ...marqueeSkills, ...marqueeSkills, ...marqueeSkills].map((s, i) => (
-              <span key={i} className="marquee-item">{s} <span className="marquee-dot"><SparkleIcon /></span></span>
-            ))}
-          </div>
-        </section>
+      {/* ════════ GRID DIVIDER TRANSITION ════════ */}
+      <div className="grid-divider-transition" aria-hidden="true">
+        <div className="grid-pattern-overlay" />
       </div>
 
       {/* ════════ ABOUT ════════ */}
@@ -395,8 +402,8 @@ export default function Home() {
             <div className="section-tag"><span className="section-tag-dot" /> About Me</div>
             <h2 className="section-title">Passionate About Crafting<br />Digital Experiences</h2>
             <p className="about-subtitle">
-              Dengan pengalaman lebih dari 5 tahun di industri teknologi, saya mengkhususkan diri dalam 
-              membangun solusi digital yang scalable, performant, dan memberikan pengalaman pengguna yang luar biasa.
+              An ambitious Software Engineering student with a near-perfect GPA, driven by a relentless curiosity 
+              for technology and innovation. Specializing in mobile development, web development, and UI/UX design.
             </p>
           </FadeSection>
 
@@ -411,10 +418,10 @@ export default function Home() {
                 <div className="about-philosophy">
                   <span className="about-philosophy-label">💡 My Philosophy</span>
                   <p className="about-philosophy-text">
-                    Saya percaya bahwa software yang hebat bukan hanya soal kode yang berjalan, 
-                    tetapi tentang menciptakan pengalaman digital yang <strong>intuitif</strong>, <strong>elegan</strong>, dan 
-                    memberikan <strong>dampak nyata</strong> bagi penggunanya. Setiap proyek adalah kesempatan untuk 
-                    mengubah ide menjadi solusi yang bermakna.
+                    I believe great software is not just about code that runs. It&apos;s about creating 
+                    digital experiences that are <strong>intuitive</strong>, <strong>elegant</strong>, and 
+                    deliver <strong>real impact</strong> for its users. Every project is an opportunity to 
+                    transform ideas into meaningful solutions that delight and empower people.
                   </p>
                 </div>
                 <div className="about-highlights-row">
@@ -526,10 +533,10 @@ export default function Home() {
           <FadeSection delay={0.3}>
             <div className="about-stats">
               {[
-                { value: "5+", label: "Tahun Pengalaman" },
-                { value: "40+", label: "Proyek Selesai" },
-                { value: "20+", label: "Klien Puas" },
-                { value: "99%", label: "Tingkat Kepuasan" },
+                { value: "3.99", label: "GPA Score" },
+                { value: "6+", label: "Work Experiences" },
+                { value: "8+", label: "Awards & Honors" },
+                { value: "7+", label: "Certifications" },
               ].map((stat, i) => (
                 <div key={i} className="about-stat-item">
                   <span className="about-stat-value">{stat.value}</span>
