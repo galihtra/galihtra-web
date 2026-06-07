@@ -138,7 +138,7 @@ export default function Home() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const navLinks = ["Home", "About", "Services", "Projects", "Contact"];
+  const navLinks = ["Home", "About", "Projects", "Contact"];
   const marqueeSkills = ["Frontend Dev", "Mobile App", "Backend API", "UI/UX", "System Design"];
 
   const aboutTabs = [
@@ -548,68 +548,16 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ════════ SERVICES ════════ */}
-      <section className="services" id="services">
-        <div className="services-inner">
-          <FadeSection className="section-header">
-            <div className="section-tag"><span className="section-tag-dot" /> Services</div>
-            <h2 className="section-title">Design Services I am Providing</h2>
-          </FadeSection>
 
-          <div className="services-grid">
-            {/* Service 1 */}
-            <FadeSection delay={0}>
-              <div className="svc-card">
-                <div className="svc-top">
-                  <div className="svc-icon"><WebIcon /></div>
-                  <div className="svc-stat"><strong>23</strong>Project Completed</div>
-                </div>
-                <h3 className="svc-title">Web Design</h3>
-                <p className="svc-desc">My web design service focuses on crafting visually stunning and user-friendly personal portfolios.</p>
-                <div className="svc-image">
-                  <Image src="/service-webdesign.png" alt="Web Design" width={400} height={250} />
-                </div>
-              </div>
-            </FadeSection>
-
-            {/* Service 2 */}
-            <FadeSection delay={0.1}>
-              <div className="svc-card">
-                <div className="svc-top">
-                  <div className="svc-icon"><MobileIcon /></div>
-                  <div className="svc-stat"><strong>17</strong>Project Completed</div>
-                </div>
-                <h3 className="svc-title">Mobile App Design</h3>
-                <p className="svc-desc">I create sleek and intuitive designs for mobile applications, working closely with you.</p>
-                <div className="svc-tags">
-                  <span className="svc-tag green">UI/UX</span>
-                  <span className="svc-tag">Flutter</span>
-                  <span className="svc-tag">React Native</span>
-                </div>
-              </div>
-            </FadeSection>
-
-            {/* Service 3 */}
-            <FadeSection delay={0.2}>
-              <div className="svc-card">
-                <div className="svc-top">
-                  <div className="svc-icon"><StarIcon /></div>
-                  <div className="svc-stat"><strong>06</strong>Project Completed</div>
-                </div>
-                <h3 className="svc-title">Brand Identity</h3>
-                <p className="svc-desc">I create memorable brand identities, from logo design to complete visual systems and guidelines.</p>
-                <div className="svc-tags">
-                  <span className="svc-tag green">Logo Design</span>
-                  <span className="svc-tag">Guidelines</span>
-                </div>
-              </div>
-            </FadeSection>
-          </div>
-        </div>
-      </section>
 
       {/* ════════ PROJECTS ════════ */}
       <section className="projects" id="projects">
+        {/* Glassmorphism Background Blobs */}
+        <div className="projects-blobs" aria-hidden="true">
+          <div className="blob proj-blob-1" />
+          <div className="blob proj-blob-2" />
+        </div>
+
         <div className="projects-inner">
           <FadeSection className="section-header">
             <div className="section-tag"><span className="section-tag-dot" /> Projects</div>
@@ -642,18 +590,27 @@ export default function Home() {
 
       {/* ════════ CONTACT ════════ */}
       <section className="contact" id="contact">
+        {/* Contact Aurora Background */}
+        <div className="contact-blobs" aria-hidden="true">
+          <div className="blob contact-blob-1" />
+          <div className="blob contact-blob-2" />
+          <div className="blob contact-blob-3" />
+        </div>
+
         <FadeSection className="contact-inner">
-          <h2 className="contact-title">Having an Idea?</h2>
-          <p className="contact-desc">
-            Have a project in mind or want to collaborate? Let&apos;s create something amazing together.
-          </p>
-          <div style={{display: "flex", gap: "16px", justifyContent: "center", alignItems: "center"}}>
-            <a href="mailto:hello@galihtra.com" className="brutalist-badge" style={{marginBottom: 0, padding: "10px 20px"}}>
-              <MailIcon /> hello@galihtra.com
-            </a>
-            <a href="mailto:hello@galihtra.com" className="brutalist-btn" style={{padding: "10px 20px"}}>
-              Contact Me <ArrowUpRight />
-            </a>
+          <div className="contact-glass-card">
+            <h2 className="contact-title">Having an Idea?</h2>
+            <p className="contact-desc">
+              Have a project in mind or want to collaborate? Let&apos;s create something amazing together.
+            </p>
+            <div style={{display: "flex", gap: "16px", justifyContent: "center", alignItems: "center"}}>
+              <a href="mailto:hello@galihtra.com" className="brutalist-badge" style={{marginBottom: 0, padding: "10px 20px"}}>
+                <MailIcon /> hello@galihtra.com
+              </a>
+              <a href="mailto:hello@galihtra.com" className="brutalist-btn" style={{padding: "10px 20px"}}>
+                Contact Me <ArrowUpRight />
+              </a>
+            </div>
           </div>
         </FadeSection>
       </section>

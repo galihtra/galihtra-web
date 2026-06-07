@@ -1547,9 +1547,41 @@ button.hamburger.active span:nth-child(3) {
    ══════════════════════════════════════════════════════ */
 .projects {
   padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+  background: #fafcff; /* Clean light base */
+}
+
+/* Glassmorphism Background Blobs for Projects */
+.projects-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.proj-blob-1 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 230, 138, 0.15) 0%, transparent 70%);
+  top: -10%;
+  left: -15%;
+  animation: blobFloat 20s infinite alternate ease-in-out;
+}
+
+.proj-blob-2 {
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, transparent 70%);
+  bottom: -20%;
+  right: -10%;
+  animation: blobFloat 25s infinite alternate-reverse ease-in-out;
 }
 
 .projects-inner {
+  position: relative;
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 28px;
@@ -1574,31 +1606,40 @@ button.hamburger.active span:nth-child(3) {
 }
 
 .proj-card {
-  background: #fff;
-  border: 1.5px solid #e5e5e5;
-  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(40px) saturate(200%);
+  -webkit-backdrop-filter: blur(40px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  border-radius: 24px;
   overflow: hidden;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s;
   cursor: pointer;
   display: flex;
   flex-direction: column;
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.03), 
+    inset 0 1px 0 rgba(255, 255, 255, 1);
 }
 
 .proj-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  border-color: #d4d4d4;
+  background: rgba(255, 255, 255, 0.65);
+  box-shadow: 
+    0 24px 48px rgba(0, 100, 255, 0.08), 
+    inset 0 1px 0 rgba(255, 255, 255, 1);
+  border-color: rgba(255, 255, 255, 0.9);
 }
 
 .proj-img {
   position: relative;
   aspect-ratio: 4/3;
   overflow: hidden;
-  background: #f5f5f5;
+  background: transparent;
   padding: 24px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
 }
 
 .proj-img img {
@@ -1655,14 +1696,67 @@ button.hamburger.active span:nth-child(3) {
    CONTACT & FOOTER
    ══════════════════════════════════════════════════════ */
 .contact {
-  padding: 100px 0;
-  background: #f5f5f5;
+  padding: 120px 0 140px;
+  position: relative;
+  overflow: hidden;
+  background: #fafcff;
+}
+
+/* Aurora Background for Contact */
+.contact-blobs {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.contact-blob-1 {
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 60%);
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: blobFloat 22s infinite alternate ease-in-out;
+}
+
+.contact-blob-2 {
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 60%);
+  bottom: -10%;
+  left: -10%;
+  animation: blobFloat 18s infinite alternate-reverse ease-in-out;
+}
+
+.contact-blob-3 {
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(0, 230, 138, 0.1) 0%, transparent 60%);
+  top: 20%;
+  right: -5%;
+  animation: blobFloat 26s infinite alternate ease-in-out;
 }
 
 .contact-inner {
-  max-width: 600px;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-glass-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(48px) saturate(200%);
+  -webkit-backdrop-filter: blur(48px) saturate(200%);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 
+    0 24px 64px rgba(0, 0, 0, 0.06), 
+    inset 0 1px 0 rgba(255, 255, 255, 1),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.3);
+  border-radius: 40px;
+  padding: 80px 40px;
+  max-width: 720px;
   margin: 0 auto;
-  padding: 0 28px;
   text-align: center;
 }
 
