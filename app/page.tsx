@@ -594,21 +594,21 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ════════ CONTACT ════════ */}
-      <section className="contact" id="contact">
-        {/* Contact Aurora Background */}
-        <div className="contact-blobs" aria-hidden="true">
-          <div className="blob contact-blob-1" />
-          <div className="blob contact-blob-2" />
-          <div className="blob contact-blob-3" />
-        </div>
+      {/* ════════ CONTACT & FOOTER WRAPPER ════════ */}
+      <div className="relative bg-[#fafcff] overflow-hidden z-0">
+        {/* Connected Aurora Background */}
+        <div className="absolute top-[20%] left-[50%] w-[800px] h-[800px] bg-purple-400/20 rounded-full mix-blend-multiply filter blur-[120px] -translate-x-1/2 -z-10 pointer-events-none animation-blobFloat"></div>
+        <div className="absolute top-[50%] left-[-5%] w-[500px] h-[500px] bg-[#00e68a]/20 rounded-full mix-blend-multiply filter blur-[120px] -z-10 pointer-events-none animation-blobFloat2"></div>
+        <div className="absolute bottom-[5%] right-[-10%] w-[800px] h-[800px] bg-[#38bdf8]/30 rounded-full mix-blend-multiply filter blur-[150px] -z-10 pointer-events-none animation-blobFloat"></div>
+
+        {/* ════════ CONTACT ════════ */}
+        <section className="relative pt-[120px] pb-[140px] z-10" id="contact">
 
         <FadeSection className="relative z-10 max-w-[1200px] mx-auto px-6 mb-20">
           {/* Custom internal aurora just for this massive card to ensure glassmorphism works perfectly */}
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-full max-h-[800px] pointer-events-none -z-10">
             <div className="absolute top-0 left-10 w-80 h-80 bg-purple-400/15 rounded-full mix-blend-multiply filter blur-[100px]"></div>
-            <div className="absolute top-20 right-10 w-96 h-96 bg-[var(--accent)]/15 rounded-full mix-blend-multiply filter blur-[100px]"></div>
-            <div className="absolute bottom-10 left-1/3 w-[500px] h-[500px] bg-blue-400/10 rounded-full mix-blend-multiply filter blur-[120px]"></div>
+            <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-[#38bdf8]/15 rounded-full mix-blend-multiply filter blur-[120px]"></div>
           </div>
 
           {/* Massive Premium Glass Card */}
@@ -698,18 +698,13 @@ export default function Home() {
         </FadeSection>
       </section>
 
-      {/* ════════ FOOTER ════════ */}
-      <footer className="relative bg-[#f8fafc] px-6 pt-24 pb-24 overflow-hidden flex justify-center z-10">
+      <footer className="relative bg-transparent px-6 pt-10 pb-24 flex justify-center z-10 w-full">
         {/* Giant background text */}
-        <div className="absolute bottom-[-5%] left-1/2 -translate-x-1/2 text-[clamp(8rem,20vw,25rem)] font-black text-[#00e68a]/15 whitespace-nowrap leading-none tracking-tighter -z-10 select-none pointer-events-none">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[40%] text-[clamp(8rem,20vw,25rem)] font-black text-[#00e68a]/15 whitespace-nowrap leading-none tracking-[0.15em] -z-10 select-none pointer-events-none">
           GALIH
         </div>
 
-        {/* Liquid Glass Aurora Blobs */}
-        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-[var(--accent)]/10 rounded-full mix-blend-multiply filter blur-[100px] -z-10 pointer-events-none"></div>
-        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-blue-400/10 rounded-full mix-blend-multiply filter blur-[100px] -z-10 pointer-events-none"></div>
-
-        <div className="w-full max-w-[1200px] relative bg-white/40 backdrop-blur-[40px] saturate-[150%] border border-white/60 shadow-[0_24px_80px_rgba(0,0,0,0.07),inset_0_2px_4px_rgba(255,255,255,0.8)] rounded-[32px] p-10 md:p-16 flex flex-col z-20">
+        <div className="w-full max-w-[1200px] relative bg-white/40 backdrop-blur-[40px] saturate-[150%] border border-white/60 shadow-[0_24px_80px_rgba(0,0,0,0.07),inset_0_2px_4px_rgba(255,255,255,0.8)] rounded-[32px] p-10 md:p-16 flex flex-col z-20 overflow-hidden">
           <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mb-16">
             {/* Left Info */}
             <div className="max-w-[380px]">
@@ -769,6 +764,7 @@ export default function Home() {
           </div>
         </div>
       </footer>
+      </div>
     </>
   );
 }
