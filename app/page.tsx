@@ -699,13 +699,69 @@ export default function Home() {
       </section>
 
       {/* ════════ FOOTER ════════ */}
-      <footer className="footer">
-        <div className="footer-inner">
-          <p className="footer-text">Copyright © 2026 Galih Tri Risky Andiko. All Rights Reserved</p>
-          <div className="footer-socials">
-            <a href="#" className="footer-soc" aria-label="GitHub"><GithubIcon /></a>
-            <a href="#" className="footer-soc" aria-label="LinkedIn"><LinkedinIcon /></a>
-            <a href="#" className="footer-soc" aria-label="Instagram"><InstagramIcon /></a>
+      <footer className="relative bg-[#f8fafc] px-6 pt-24 pb-12 overflow-hidden flex justify-center z-10">
+        {/* Giant background text */}
+        <div className="absolute bottom-[-5%] left-1/2 -translate-x-1/2 text-[clamp(8rem,20vw,25rem)] font-black text-[#e2e8f0]/40 whitespace-nowrap leading-none tracking-tighter -z-10 select-none pointer-events-none">
+          GALIH
+        </div>
+
+        <div className="w-full max-w-[1200px] bg-white rounded-[32px] p-10 md:p-16 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-black/[0.04] flex flex-col z-20">
+          <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mb-16">
+            {/* Left Info */}
+            <div className="max-w-[380px]">
+              <h2 className="text-2xl font-black text-[#171717] mb-6 tracking-tight flex items-center gap-3">
+                {/* Minimalist Logo mark */}
+                <div className="w-8 h-8 bg-[#171717] rounded-lg flex items-center justify-center">
+                  <SparkleIcon />
+                </div>
+                Galih.
+              </h2>
+              <p className="text-[15px] text-[#525252] leading-relaxed mb-8">
+                Building digital experiences that combine function with stunning aesthetics. Let&apos;s create something amazing together.
+              </p>
+              <div className="flex gap-5">
+                <a href="#" className="text-[#171717] hover:text-[#525252] transition-colors"><InstagramIcon /></a>
+                <a href="#" className="text-[#171717] hover:text-[#525252] transition-colors"><LinkedinIcon /></a>
+                <a href="#" className="text-[#171717] hover:text-[#525252] transition-colors"><GithubIcon /></a>
+                <a href="#" className="text-[#171717] hover:text-[#525252] transition-colors"><DribbbleIcon /></a>
+              </div>
+            </div>
+
+            {/* Right Links */}
+            <div className="flex flex-wrap gap-12 sm:gap-20">
+              <div className="flex flex-col gap-4">
+                <h4 className="text-[15px] font-bold text-[#171717] mb-2">Navigation</h4>
+                <a href="#home" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Home</a>
+                <a href="#about" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">About</a>
+                <a href="#projects" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Projects</a>
+                <a href="#contact" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Contact</a>
+              </div>
+              <div className="flex flex-col gap-4">
+                <h4 className="text-[15px] font-bold text-[#171717] mb-2">Resources</h4>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Documentation</a>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Tutorials</a>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Blog</a>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Support</a>
+              </div>
+              <div className="flex flex-col gap-4">
+                <h4 className="text-[15px] font-bold text-[#171717] mb-2">Company</h4>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">About</a>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Careers</a>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Contact</a>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Partners</a>
+              </div>
+            </div>
+          </div>
+          
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pt-8 border-t border-black/5">
+            <p className="text-[14px] font-medium text-[#737373]">
+              © 2026 Galih Tri Risky Andiko. All rights reserved.
+            </p>
+            <div className="flex flex-wrap gap-6">
+              <a href="#" className="text-[13px] font-medium text-[#737373] hover:text-[#171717] underline underline-offset-4 transition-colors">Privacy Policy</a>
+              <a href="#" className="text-[13px] font-medium text-[#737373] hover:text-[#171717] underline underline-offset-4 transition-colors">Terms of Service</a>
+              <a href="#" className="text-[13px] font-medium text-[#737373] hover:text-[#171717] underline underline-offset-4 transition-colors">Cookies Settings</a>
+            </div>
           </div>
         </div>
       </footer>
