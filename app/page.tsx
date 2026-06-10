@@ -699,13 +699,17 @@ export default function Home() {
       </section>
 
       {/* ════════ FOOTER ════════ */}
-      <footer className="relative bg-[#f8fafc] px-6 pt-24 pb-12 overflow-hidden flex justify-center z-10">
+      <footer className="relative bg-[#f8fafc] px-6 pt-24 pb-24 overflow-hidden flex justify-center z-10">
         {/* Giant background text */}
-        <div className="absolute bottom-[-5%] left-1/2 -translate-x-1/2 text-[clamp(8rem,20vw,25rem)] font-black text-[#e2e8f0]/40 whitespace-nowrap leading-none tracking-tighter -z-10 select-none pointer-events-none">
+        <div className="absolute bottom-[-5%] left-1/2 -translate-x-1/2 text-[clamp(8rem,20vw,25rem)] font-black text-[#00e68a]/15 whitespace-nowrap leading-none tracking-tighter -z-10 select-none pointer-events-none">
           GALIH
         </div>
 
-        <div className="w-full max-w-[1200px] bg-white rounded-[32px] p-10 md:p-16 shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-black/[0.04] flex flex-col z-20">
+        {/* Liquid Glass Aurora Blobs */}
+        <div className="absolute top-1/2 left-1/4 w-96 h-96 bg-[var(--accent)]/10 rounded-full mix-blend-multiply filter blur-[100px] -z-10 pointer-events-none"></div>
+        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-blue-400/10 rounded-full mix-blend-multiply filter blur-[100px] -z-10 pointer-events-none"></div>
+
+        <div className="w-full max-w-[1200px] relative bg-white/40 backdrop-blur-[40px] saturate-[150%] border border-white/60 shadow-[0_24px_80px_rgba(0,0,0,0.07),inset_0_2px_4px_rgba(255,255,255,0.8)] rounded-[32px] p-10 md:p-16 flex flex-col z-20">
           <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mb-16">
             {/* Left Info */}
             <div className="max-w-[380px]">
