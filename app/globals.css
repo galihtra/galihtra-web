@@ -1714,7 +1714,7 @@ button.hamburger.active span:nth-child(3) {
 .contact-blob-1 {
   width: 800px;
   height: 800px;
-  background: radial-gradient(circle, rgba(168, 85, 247, 0.15) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.4) 0%, transparent 60%);
   top: -20%;
   left: 50%;
   transform: translateX(-50%);
@@ -1724,7 +1724,7 @@ button.hamburger.active span:nth-child(3) {
 .contact-blob-2 {
   width: 600px;
   height: 600px;
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.4) 0%, transparent 60%);
   bottom: -10%;
   left: -10%;
   animation: blobFloat 18s infinite alternate-reverse ease-in-out;
@@ -1733,48 +1733,13 @@ button.hamburger.active span:nth-child(3) {
 .contact-blob-3 {
   width: 500px;
   height: 500px;
-  background: radial-gradient(circle, rgba(0, 230, 138, 0.1) 0%, transparent 60%);
+  background: radial-gradient(circle, rgba(0, 230, 138, 0.35) 0%, transparent 60%);
   top: 20%;
   right: -5%;
   animation: blobFloat 26s infinite alternate ease-in-out;
 }
 
-.contact-inner {
-  position: relative;
-  z-index: 1;
-}
 
-.contact-glass-card {
-  background: rgba(255, 255, 255, 0.5);
-  backdrop-filter: blur(48px) saturate(200%);
-  -webkit-backdrop-filter: blur(48px) saturate(200%);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 
-    0 24px 64px rgba(0, 0, 0, 0.06), 
-    inset 0 1px 0 rgba(255, 255, 255, 1),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.3);
-  border-radius: 40px;
-  padding: 80px 40px;
-  max-width: 720px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-.contact-title {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #171717;
-  letter-spacing: -0.03em;
-  margin: 0 0 16px;
-}
-
-.contact-desc {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #525252;
-  margin: 0 0 40px;
-  font-weight: 500;
-}
 
 .footer {
   padding: 30px 0;

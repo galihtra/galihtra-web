@@ -44,6 +44,12 @@ const MobileIcon = () => (
 const StarIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" /></svg>
 );
+const PhoneIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" /></svg>
+);
+const MapPinIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+);
 
 const SparkleIcon = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="#fff">
@@ -597,19 +603,96 @@ export default function Home() {
           <div className="blob contact-blob-3" />
         </div>
 
-        <FadeSection className="contact-inner">
-          <div className="contact-glass-card">
-            <h2 className="contact-title">Having an Idea?</h2>
-            <p className="contact-desc">
-              Have a project in mind or want to collaborate? Let&apos;s create something amazing together.
-            </p>
-            <div style={{display: "flex", gap: "16px", justifyContent: "center", alignItems: "center"}}>
-              <a href="mailto:hello@galihtra.com" className="brutalist-badge" style={{marginBottom: 0, padding: "10px 20px"}}>
-                <MailIcon /> hello@galihtra.com
-              </a>
-              <a href="mailto:hello@galihtra.com" className="brutalist-btn" style={{padding: "10px 20px"}}>
-                Contact Me <ArrowUpRight />
-              </a>
+        <FadeSection className="relative z-10 max-w-[1200px] mx-auto px-6 mb-20">
+          {/* Custom internal aurora just for this massive card to ensure glassmorphism works perfectly */}
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-full max-h-[800px] pointer-events-none -z-10">
+            <div className="absolute top-0 left-10 w-80 h-80 bg-purple-400/15 rounded-full mix-blend-multiply filter blur-[100px]"></div>
+            <div className="absolute top-20 right-10 w-96 h-96 bg-[var(--accent)]/15 rounded-full mix-blend-multiply filter blur-[100px]"></div>
+            <div className="absolute bottom-10 left-1/3 w-[500px] h-[500px] bg-blue-400/10 rounded-full mix-blend-multiply filter blur-[120px]"></div>
+          </div>
+
+          {/* Massive Premium Glass Card */}
+          <div className="relative bg-white/40 backdrop-blur-[40px] saturate-[150%] border border-white/60 shadow-[0_24px_80px_rgba(0,0,0,0.07),inset_0_2px_4px_rgba(255,255,255,0.8)] rounded-[40px] lg:rounded-[48px] overflow-hidden flex flex-col lg:flex-row">
+            
+            {/* Left Side: Info */}
+            <div className="lg:w-2/5 p-10 lg:p-16 bg-white/40 border-b lg:border-b-0 lg:border-r border-white/50 relative overflow-hidden flex flex-col justify-between">
+              <div className="relative z-10">
+                <h2 className="hero-title mb-6">
+                  Let&apos;s talk <br/>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-dark)] to-[#00b36b]">business.</span>
+                </h2>
+                <p className="text-lg text-[#525252] font-medium leading-relaxed max-w-[95%]">
+                  Whether you have a specific project in mind or just want to explore possibilities, my inbox is always open.
+                </p>
+              </div>
+
+              <div className="relative z-10 flex flex-col mt-12">
+                <p className="text-xs font-black text-[#737373] uppercase tracking-widest mb-4">I can help you with</p>
+                <div className="flex flex-wrap gap-2.5">
+                  <span className="px-4 py-2.5 rounded-full border border-white/80 shadow-sm text-sm font-bold text-[#171717] bg-white/50 hover:-translate-y-0.5 transition-transform cursor-default">Frontend Development</span>
+                  <span className="px-4 py-2.5 rounded-full border border-white/80 shadow-sm text-sm font-bold text-[#171717] bg-white/50 hover:-translate-y-0.5 transition-transform cursor-default">UI/UX Design</span>
+                  <span className="px-4 py-2.5 rounded-full border border-white/80 shadow-sm text-sm font-bold text-[#171717] bg-white/50 hover:-translate-y-0.5 transition-transform cursor-default">Web Applications</span>
+                  <span className="px-4 py-2.5 rounded-full border border-white/80 shadow-sm text-sm font-bold text-[#171717] bg-white/50 hover:-translate-y-0.5 transition-transform cursor-default">Prototyping</span>
+                </div>
+
+                <div className="mt-10 p-5 rounded-3xl bg-white/60 border border-white/80 shadow-sm flex items-start gap-4">
+                  <div className="relative flex h-3 w-3 mt-1.5 shrink-0">
+                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
+                    <span className="relative inline-flex rounded-full h-3 w-3 bg-[var(--accent)]"></span>
+                  </div>
+                  <div>
+                    <p className="font-extrabold text-[#171717] mb-1">Available for new projects</p>
+                    <p className="text-sm font-medium text-[#525252] leading-relaxed">Let&apos;s discuss your timeline and how we can collaborate effectively.</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Socials inside left card */}
+              <div className="relative z-10 flex gap-4 mt-12 pt-12 border-t border-black/5">
+                <a href="#" aria-label="Instagram" className="text-[#737373] hover:text-[var(--accent-dark)] transition-colors duration-300"><InstagramIcon /></a>
+                <a href="#" aria-label="Dribbble" className="text-[#737373] hover:text-[var(--accent-dark)] transition-colors duration-300"><DribbbleIcon /></a>
+              </div>
+            </div>
+
+            {/* Right Side: Form */}
+            <div className="lg:w-3/5 p-10 lg:p-16 bg-white/20">
+              <form className="flex flex-col gap-10 h-full justify-center" onSubmit={(e) => e.preventDefault()}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="flex flex-col gap-3 relative group">
+                    <label className="text-xs font-black text-[#737373] uppercase tracking-widest">First Name *</label>
+                    <input type="text" placeholder="John" required className="w-full bg-transparent border-b-2 border-black/10 py-2 text-xl font-medium text-[#171717] focus:outline-none focus:border-[var(--accent)] transition-colors placeholder-black/20" />
+                  </div>
+                  <div className="flex flex-col gap-3 relative group">
+                    <label className="text-xs font-black text-[#737373] uppercase tracking-widest">Last Name *</label>
+                    <input type="text" placeholder="Doe" required className="w-full bg-transparent border-b-2 border-black/10 py-2 text-xl font-medium text-[#171717] focus:outline-none focus:border-[var(--accent)] transition-colors placeholder-black/20" />
+                  </div>
+                </div>
+                
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                  <div className="flex flex-col gap-3 relative group">
+                    <label className="text-xs font-black text-[#737373] uppercase tracking-widest">Contact Number</label>
+                    <input type="text" placeholder="+62" required className="w-full bg-transparent border-b-2 border-black/10 py-2 text-xl font-medium text-[#171717] focus:outline-none focus:border-[var(--accent)] transition-colors placeholder-black/20" />
+                  </div>
+                  <div className="flex flex-col gap-3 relative group">
+                    <label className="text-xs font-black text-[#737373] uppercase tracking-widest">Email Address *</label>
+                    <input type="email" placeholder="john@example.com" required className="w-full bg-transparent border-b-2 border-black/10 py-2 text-xl font-medium text-[#171717] focus:outline-none focus:border-[var(--accent)] transition-colors placeholder-black/20" />
+                  </div>
+                </div>
+
+                <div className="flex flex-col gap-3 relative group">
+                  <label className="text-xs font-black text-[#737373] uppercase tracking-widest">Project Details *</label>
+                  <textarea rows={3} placeholder="Tell me about your brilliant ideas..." required className="w-full bg-transparent border-b-2 border-black/10 py-2 text-xl font-medium text-[#171717] focus:outline-none focus:border-[var(--accent)] transition-colors placeholder-black/20 resize-y"></textarea>
+                </div>
+
+                <div className="mt-6">
+                  <button type="submit" className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#171717] text-white font-bold text-lg rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,230,138,0.3)] hover:-translate-y-1">
+                    <span className="absolute inset-0 w-full h-full bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
+                    <span className="relative z-10 flex items-center gap-3 group-hover:text-[#171717] transition-colors duration-300">
+                      Send Message <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                    </span>
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </FadeSection>
