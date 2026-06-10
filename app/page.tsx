@@ -700,7 +700,7 @@ export default function Home() {
 
       <footer className="relative bg-transparent px-6 pt-10 pb-24 flex justify-center z-10 w-full">
         {/* Giant background text */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[40%] text-[clamp(8rem,20vw,25rem)] font-black text-[#00e68a]/15 whitespace-nowrap leading-none tracking-[0.15em] -z-10 select-none pointer-events-none">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[40%] text-[clamp(8rem,20vw,25rem)] font-[800] bg-[linear-gradient(135deg,var(--accent-dark)_0%,#00cfb4_100%)] bg-clip-text text-transparent whitespace-nowrap leading-none tracking-[0.05em] -z-10 select-none pointer-events-none">
           GALIH
         </div>
 
@@ -708,46 +708,43 @@ export default function Home() {
           <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mb-16">
             {/* Left Info */}
             <div className="max-w-[380px]">
-              <h2 className="text-2xl font-black text-[#171717] mb-6 tracking-tight flex items-center gap-3">
+              <h2 className="text-2xl font-[800] mb-6 tracking-[-0.02em] flex items-center gap-3">
                 {/* Minimalist Logo mark */}
-                <div className="w-8 h-8 bg-[#171717] rounded-lg flex items-center justify-center">
-                  <SparkleIcon />
-                </div>
-                Galih.
+                <span className="bg-[linear-gradient(135deg,var(--accent-dark)_0%,#00cfb4_100%)] bg-clip-text text-transparent">Galih Tri Risky Andiko</span>
               </h2>
-              <p className="text-[15px] text-[#525252] leading-relaxed mb-8">
+              <p className="text-[15px] text-[#525252] leading-[1.6] mb-8">
                 Building digital experiences that combine function with stunning aesthetics. Let&apos;s create something amazing together.
               </p>
               <div className="flex gap-5">
-                <a href="#" className="text-[#171717] hover:text-[#525252] transition-colors"><InstagramIcon /></a>
-                <a href="#" className="text-[#171717] hover:text-[#525252] transition-colors"><LinkedinIcon /></a>
-                <a href="#" className="text-[#171717] hover:text-[#525252] transition-colors"><GithubIcon /></a>
-                <a href="#" className="text-[#171717] hover:text-[#525252] transition-colors"><DribbbleIcon /></a>
+                <a href="#" className="text-[#171717] hover:text-[var(--accent-dark)] transition-colors"><InstagramIcon /></a>
+                <a href="#" className="text-[#171717] hover:text-[var(--accent-dark)] transition-colors"><LinkedinIcon /></a>
+                <a href="#" className="text-[#171717] hover:text-[var(--accent-dark)] transition-colors"><GithubIcon /></a>
+                <a href="#" className="text-[#171717] hover:text-[var(--accent-dark)] transition-colors"><DribbbleIcon /></a>
               </div>
             </div>
 
             {/* Right Links */}
             <div className="flex flex-wrap gap-12 sm:gap-20">
               <div className="flex flex-col gap-4">
-                <h4 className="text-[15px] font-bold text-[#171717] mb-2">Navigation</h4>
-                <a href="#home" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Home</a>
-                <a href="#about" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">About</a>
-                <a href="#projects" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Projects</a>
-                <a href="#contact" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Contact</a>
+                <h4 className="text-[15px] font-[700] tracking-[-0.02em] text-[#171717] mb-2">Navigation</h4>
+                <a href="#home" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Home</a>
+                <a href="#about" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">About</a>
+                <a href="#projects" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Projects</a>
+                <a href="#contact" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Contact</a>
               </div>
               <div className="flex flex-col gap-4">
-                <h4 className="text-[15px] font-bold text-[#171717] mb-2">Resources</h4>
-                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Documentation</a>
-                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Tutorials</a>
-                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Blog</a>
-                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Support</a>
+                <h4 className="text-[15px] font-[700] tracking-[-0.02em] text-[#171717] mb-2">Resources</h4>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Documentation</a>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Tutorials</a>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Blog</a>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Support</a>
               </div>
               <div className="flex flex-col gap-4">
-                <h4 className="text-[15px] font-bold text-[#171717] mb-2">Company</h4>
-                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">About</a>
-                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Careers</a>
-                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Contact</a>
-                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[#171717] transition-colors">Partners</a>
+                <h4 className="text-[15px] font-[700] tracking-[-0.02em] text-[#171717] mb-2">Company</h4>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">About</a>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Careers</a>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Contact</a>
+                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Partners</a>
               </div>
             </div>
           </div>
@@ -757,9 +754,9 @@ export default function Home() {
               © 2026 Galih Tri Risky Andiko. All rights reserved.
             </p>
             <div className="flex flex-wrap gap-6">
-              <a href="#" className="text-[13px] font-medium text-[#737373] hover:text-[#171717] underline underline-offset-4 transition-colors">Privacy Policy</a>
-              <a href="#" className="text-[13px] font-medium text-[#737373] hover:text-[#171717] underline underline-offset-4 transition-colors">Terms of Service</a>
-              <a href="#" className="text-[13px] font-medium text-[#737373] hover:text-[#171717] underline underline-offset-4 transition-colors">Cookies Settings</a>
+              <a href="#" className="text-[13px] font-medium text-[#737373] hover:text-[var(--accent-dark)] underline underline-offset-4 transition-colors">Privacy Policy</a>
+              <a href="#" className="text-[13px] font-medium text-[#737373] hover:text-[var(--accent-dark)] underline underline-offset-4 transition-colors">Terms of Service</a>
+              <a href="#" className="text-[13px] font-medium text-[#737373] hover:text-[var(--accent-dark)] underline underline-offset-4 transition-colors">Cookies Settings</a>
             </div>
           </div>
         </div>
