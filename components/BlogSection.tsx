@@ -78,29 +78,33 @@ const popularTags = [
 
 export default function BlogSection() {
   return (
-    <section className="relative py-24 bg-[#fafcff] z-10" id="blog">
-      {/* Aurora Backgrounds */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-[#38bdf8]/10 rounded-full mix-blend-multiply filter blur-[100px] -z-10 pointer-events-none"></div>
-      <div className="absolute bottom-0 left-[-10%] w-[500px] h-[500px] bg-[#00cfb4]/10 rounded-full mix-blend-multiply filter blur-[100px] -z-10 pointer-events-none"></div>
+    <section className="relative py-24 bg-[#fafcff] z-10 overflow-hidden" id="blog">
+      {/* Noise Texture to make glass pop */}
+      <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")', backgroundSize: '200px 200px' }}></div>
+      
+      {/* Aurora Backgrounds - Stronger colors directly behind the grid to create refraction */}
+      <div className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-[#00e68a]/20 rounded-full mix-blend-multiply filter blur-[120px] -z-10 pointer-events-none animate-pulse" style={{ animationDuration: '8s' }}></div>
+      <div className="absolute top-[40%] right-[10%] w-[600px] h-[600px] bg-[#38bdf8]/15 rounded-full mix-blend-multiply filter blur-[120px] -z-10 pointer-events-none animate-pulse" style={{ animationDuration: '12s' }}></div>
+      <div className="absolute bottom-[-5%] left-[40%] w-[700px] h-[700px] bg-[#00cfb4]/20 rounded-full mix-blend-multiply filter blur-[140px] -z-10 pointer-events-none animate-pulse" style={{ animationDuration: '10s' }}></div>
 
-      <div className="max-w-[1200px] mx-auto px-6">
+      <div className="relative max-w-[1200px] mx-auto px-6 z-10">
         
         {/* Header Tools */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
           <div className="flex items-center gap-6 text-[#737373] text-sm font-bold">
             <div className="flex gap-2 items-center text-[#171717]">
-              <button className="p-1.5 bg-white/60 border border-white/80 rounded shadow-sm text-blue-600 hover:bg-white transition-colors">
-                <LayoutGrid size={18} />
+              <button className="p-1.5 bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-md border border-white/80 rounded shadow-[0_2px_8px_rgba(0,0,0,0.06)] text-[var(--accent-dark)] hover:from-white hover:to-white transition-all">
+                <LayoutGrid size={18} strokeWidth={2.5} />
               </button>
-              <button className="p-1.5 hover:bg-white/40 rounded transition-colors">
-                <List size={18} />
+              <button className="p-1.5 hover:bg-white/40 rounded transition-colors text-[#737373]">
+                <List size={18} strokeWidth={2.5} />
               </button>
             </div>
             <div className="uppercase tracking-widest text-[11px] font-black">
-              SHOWING <span className="text-[#38bdf8]">212 RESULTS</span>
+              SHOWING <span className="text-[var(--accent-dark)]">212 RESULTS</span>
             </div>
-            <div className="uppercase tracking-widest text-[11px] font-black flex items-center cursor-pointer">
-              SORT BY <ChevronRight size={14} className="ml-1 rotate-90" />
+            <div className="uppercase tracking-widest text-[11px] font-black flex items-center cursor-pointer hover:text-[#171717] transition-colors">
+              SORT BY <ChevronRight size={16} strokeWidth={3} className="ml-1 rotate-90" />
             </div>
           </div>
           
@@ -108,10 +112,10 @@ export default function BlogSection() {
             <input 
               type="text" 
               placeholder="SEARCH..." 
-              className="w-full pl-6 pr-12 py-3 bg-white/40 backdrop-blur-md border border-white/80 shadow-sm rounded-full text-sm font-bold text-[#171717] outline-none focus:border-[#38bdf8] transition-colors placeholder:text-[#737373] placeholder:tracking-widest"
+              className="w-full pl-6 pr-14 py-3 bg-gradient-to-r from-white/80 to-white/40 backdrop-blur-[40px] saturate-[200%] border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_2px_4px_rgba(255,255,255,0.9)] rounded-full text-sm font-bold text-[#171717] outline-none focus:border-[var(--accent)] focus:shadow-[0_8px_32px_rgba(0,230,138,0.15)] transition-all placeholder:text-[#737373] placeholder:tracking-widest"
             />
-            <button className="absolute right-1 top-1 w-10 h-10 bg-[#345b80] text-white rounded-full flex items-center justify-center hover:bg-[#2a4a68] transition-colors">
-              <Search size={16} />
+            <button className="absolute right-1 top-1 w-10 h-10 bg-[#171717] text-white rounded-full flex items-center justify-center hover:bg-[var(--accent-dark)] hover:text-white transition-colors shadow-md">
+              <Search size={18} strokeWidth={2.5} />
             </button>
           </div>
         </div>
@@ -121,39 +125,57 @@ export default function BlogSection() {
           <div className="flex-1">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               {blogPosts.map((post) => (
-                <article key={post.slug} className="group cursor-pointer">
-                  <div className="relative w-full aspect-[4/3] rounded-3xl overflow-hidden mb-6 bg-white/30 border border-white/50 shadow-sm">
+                <article 
+                  key={post.slug} 
+                  className="group cursor-pointer flex flex-col bg-gradient-to-br from-white/70 to-white/20 backdrop-blur-[50px] saturate-[200%] border border-white/70 shadow-[0_12px_40px_rgba(0,0,0,0.06),inset_0_2px_4px_rgba(255,255,255,0.9)] rounded-[32px] p-4 pb-6 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(0,230,138,0.15),inset_0_2px_8px_rgba(255,255,255,1)] hover:border-[var(--accent)]/50 relative"
+                >
+                  {/* Subtle Shimmer Overlay on hover */}
+                  <div className="absolute inset-0 rounded-[32px] bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+
+                  <div className="relative w-full aspect-[4/3] rounded-[24px] overflow-hidden mb-5 border border-white/60 shadow-inner">
                     <Image
                       src={post.img}
                       alt={post.title}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
                     />
+                    {/* Hover Overlay Pill */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10 bg-black/5 backdrop-blur-[2px]">
+                      <div className="bg-white/80 backdrop-blur-md border border-white/90 shadow-[0_8px_32px_rgba(0,0,0,0.12)] text-[#171717] text-xs font-black tracking-wide px-5 py-2.5 rounded-full transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                        READ ARTICLE
+                      </div>
+                    </div>
                   </div>
-                  <h3 className="text-[19px] font-bold text-[#171717] leading-[1.4] mb-3 group-hover:text-[var(--accent-dark)] transition-colors">
-                    {post.title}
-                  </h3>
-                  <p className="text-[13px] font-medium text-[#737373]">
-                    {post.date} by <span className="text-[#38bdf8] hover:underline">{post.author}</span>
-                  </p>
+                  <div className="px-3 relative z-10">
+                    <h3 className="text-[18px] font-extrabold text-[#171717] leading-[1.35] mb-3 group-hover:text-[var(--accent-dark)] transition-colors">
+                      {post.title}
+                    </h3>
+                    <p className="text-[13px] font-semibold text-[#737373]">
+                      {post.date} by <span className="text-[var(--accent-dark)] hover:underline">{post.author}</span>
+                    </p>
+                  </div>
                 </article>
               ))}
             </div>
           </div>
 
           {/* Sidebar */}
-          <div className="w-full lg:w-[320px] flex flex-col gap-12">
+          <div className="w-full lg:w-[320px] flex flex-col gap-12 pt-2">
             
             {/* Categories */}
-            <div>
-              <h4 className="text-[13px] font-black text-[#171717] uppercase tracking-widest mb-6">All Categories</h4>
-              <ul className="flex flex-col gap-4">
+            <div className="bg-gradient-to-br from-white/70 to-white/20 backdrop-blur-[50px] saturate-[200%] border border-white/70 shadow-[0_12px_40px_rgba(0,0,0,0.06),inset_0_2px_4px_rgba(255,255,255,0.9)] rounded-[32px] p-8">
+              <h4 className="text-[12px] font-black text-[#737373] uppercase tracking-widest mb-6">All Categories</h4>
+              <ul className="flex flex-col gap-5">
                 {categories.map((cat) => {
                   const isActive = cat === "Website Development";
                   return (
-                    <li key={cat} className="flex items-center gap-2">
-                      {isActive && <ChevronRight size={14} className="text-[#c25e4a]" />}
-                      <span className={`text-[15px] font-bold cursor-pointer transition-colors ${isActive ? "text-[#c25e4a]" : "text-[#525252] hover:text-[#171717]"}`}>
+                    <li key={cat} className="flex items-center gap-3 group cursor-pointer">
+                      {isActive ? (
+                        <ChevronRight size={16} strokeWidth={3} className="text-[var(--accent-dark)]" />
+                      ) : (
+                        <div className="w-4 h-4 rounded-full border-2 border-transparent group-hover:border-[var(--accent)] transition-colors" />
+                      )}
+                      <span className={`text-[15px] font-bold transition-colors ${isActive ? "text-[var(--accent-dark)]" : "text-[#525252] group-hover:text-[#171717]"}`}>
                         {cat}
                       </span>
                     </li>
@@ -163,12 +185,12 @@ export default function BlogSection() {
             </div>
 
             {/* Latest Posts */}
-            <div>
-              <h4 className="text-[13px] font-black text-[#171717] uppercase tracking-widest mb-6">Latest Posts</h4>
-              <div className="flex flex-col gap-6">
+            <div className="relative">
+              <h4 className="text-[12px] font-black text-[#737373] uppercase tracking-widest mb-6 px-2">Latest Posts</h4>
+              <div className="flex flex-col gap-5">
                 {latestPosts.map((post, idx) => (
-                  <div key={idx} className="flex gap-4 items-center group cursor-pointer">
-                    <div className="relative w-20 h-20 rounded-2xl overflow-hidden shrink-0 border border-black/5">
+                  <div key={idx} className="flex gap-4 items-center group cursor-pointer p-3 rounded-2xl bg-white/20 backdrop-blur-md border border-white/40 shadow-sm hover:bg-white/60 hover:shadow-md hover:border-white/80 transition-all">
+                    <div className="relative w-20 h-20 rounded-[18px] overflow-hidden shrink-0 border border-white/80 shadow-sm">
                       <Image
                         src={post.img}
                         alt={post.title}
@@ -178,8 +200,8 @@ export default function BlogSection() {
                     </div>
                     <div className="flex flex-col">
                       <span className="text-[10px] font-bold text-[#737373] uppercase tracking-wider mb-1">{post.date}</span>
-                      <h5 className="text-[13px] font-bold text-[#171717] leading-tight mb-1 group-hover:text-[var(--accent-dark)] transition-colors">{post.title}</h5>
-                      <span className="text-[11px] font-medium text-[#38bdf8]">by {post.author}</span>
+                      <h5 className="text-[13px] font-bold text-[#171717] leading-snug mb-1 group-hover:text-[var(--accent-dark)] transition-colors">{post.title}</h5>
+                      <span className="text-[11px] font-bold text-[var(--accent-dark)]">by {post.author}</span>
                     </div>
                   </div>
                 ))}
@@ -187,13 +209,13 @@ export default function BlogSection() {
             </div>
 
             {/* Popular Tags */}
-            <div>
-              <h4 className="text-[13px] font-black text-[#171717] uppercase tracking-widest mb-6">Popular Tags</h4>
+            <div className="relative">
+              <h4 className="text-[12px] font-black text-[#737373] uppercase tracking-widest mb-6 px-2">Popular Tags</h4>
               <div className="flex flex-wrap gap-2">
                 {popularTags.map((tag) => (
                   <span 
                     key={tag} 
-                    className="px-4 py-2 rounded-full bg-[#e8ecf2] border border-white/50 text-[#525252] text-[12px] font-bold hover:bg-white hover:shadow-sm transition-all cursor-pointer"
+                    className="px-4 py-2.5 rounded-full bg-gradient-to-r from-white/80 to-white/40 backdrop-blur-[30px] saturate-150 border border-white/80 shadow-sm text-[#171717] text-[12px] font-bold hover:bg-[var(--accent)] hover:text-[#171717] hover:border-[var(--accent)] transition-all cursor-pointer"
                   >
                     {tag}
                   </span>
