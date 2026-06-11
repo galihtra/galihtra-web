@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import { projects } from "./data/projects";
+import BlogSection from "../components/BlogSection";
 
 /* ── SVG Icons ─────────────────────────────────────────── */
 const ChevronIcon = () => (
@@ -219,7 +220,7 @@ export default function Home() {
 
   /* Track active section via IntersectionObserver */
   useEffect(() => {
-    const sections = ["home", "about", "services", "projects", "contact"];
+    const sections = ["home", "about", "services", "projects", "blog", "contact"];
     const observers: IntersectionObserver[] = [];
     sections.forEach((id) => {
       const el = document.getElementById(id);
@@ -234,7 +235,7 @@ export default function Home() {
     return () => observers.forEach((o) => o.disconnect());
   }, []);
 
-  const navLinks = ["Home", "About", "Projects", "Contact"];
+  const navLinks = ["Home", "About", "Projects", "Blog", "Contact"];
   const marqueeSkills = ["Frontend Dev", "Mobile App", "Backend API", "UI/UX", "System Design"];
 
   const aboutTabs = [
@@ -648,6 +649,7 @@ export default function Home() {
 
       {/* ════════ PROJECTS ════════ */}
       <ProjectsSection />
+      <BlogSection />
 
       {/* ════════ CONTACT & FOOTER WRAPPER ════════ */}
       <div className="relative bg-[#fafcff] overflow-hidden z-0">
