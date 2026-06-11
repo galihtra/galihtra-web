@@ -1,8 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "motion/react";
+import { projects } from "./data/projects";
 
 /* ── SVG Icons ─────────────────────────────────────────── */
 const ChevronIcon = () => (
@@ -113,6 +115,94 @@ const CodeBracketIcon = () => (
 const CheckCircleIcon = () => (
   <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" /><polyline points="22 4 12 14.01 9 11.01" /></svg>
 );
+
+/* ── Portfolio Grid Card ── */
+const PortfolioCard = ({ project, index }: { project: any; index: number }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const isInView = useInView(ref, { once: true, margin: "-60px" });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 28 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5, delay: index * 0.07, ease: [0.25, 0.46, 0.45, 0.94] }}
+    >
+      <Link href={`/portfolio/${project.slug}`} className="port-card" tabIndex={0}>
+        {/* Image area — fixed height, fill image */}
+        <div className="port-card-img-wrap">
+          <Image
+            src={project.img}
+            alt={project.title}
+            fill
+            sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw"
+            className="port-card-img"
+          />
+          {/* Gradient overlay always visible at bottom */}
+          <div className="port-card-gradient" />
+          {/* Hover pill */}
+          <div className="port-card-overlay">
+            <span className="port-card-view">View Project <ArrowUpRight /></span>
+          </div>
+          {/* Shimmer */}
+          <div className="port-card-shimmer" aria-hidden="true" />
+        </div>
+
+        {/* Info below image */}
+        <div className="port-card-info">
+          <h3 className="port-card-title">{project.title}</h3>
+          <span className="port-card-tag">{project.tag}</span>
+        </div>
+      </Link>
+    </motion.div>
+  );
+};
+
+/* ── Projects Grid Section ── */
+function ProjectsSection() {
+  const headerRef = useRef(null);
+  const isHeaderInView = useInView(headerRef, { once: true, margin: "-60px" });
+
+  return (
+    <section className="port-section" id="projects">
+      {/* Dark background noise/grain overlay */}
+      <div className="port-grain" aria-hidden="true" />
+
+      {/* Subtle aurora blobs */}
+      <div className="port-blobs" aria-hidden="true">
+        <div className="port-blob port-blob-1" />
+        <div className="port-blob port-blob-2" />
+        <div className="port-blob port-blob-3" />
+      </div>
+
+      <div className="port-inner">
+        {/* Header row */}
+        <motion.div
+          ref={headerRef}
+          className="port-header"
+          initial={{ opacity: 0, y: 24 }}
+          animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
+        >
+          <div>
+            <p className="port-eyebrow">My Work</p>
+            <h2 className="port-heading">Our Portfolio</h2>
+          </div>
+          <Link href="/portfolio" className="port-see-all">
+            See All <ArrowRight />
+          </Link>
+        </motion.div>
+
+        {/* Grid */}
+        <div className="port-grid">
+          {projects.map((p, i) => (
+            <PortfolioCard key={p.slug} project={p} index={i} />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
 
 /* ══ Main Component ═══════════════════════════════════════ */
 export default function Home() {
@@ -557,42 +647,7 @@ export default function Home() {
 
 
       {/* ════════ PROJECTS ════════ */}
-      <section className="projects" id="projects">
-        {/* Glassmorphism Background Blobs */}
-        <div className="projects-blobs" aria-hidden="true">
-          <div className="blob proj-blob-1" />
-          <div className="blob proj-blob-2" />
-        </div>
-
-        <div className="projects-inner">
-          <FadeSection className="section-header">
-            <div className="section-tag"><span className="section-tag-dot" /> Projects</div>
-            <h2 className="section-title">My Latest Projects</h2>
-            <p style={{marginTop: "16px", color: "#525252"}}>A curated collection of recent work that showcases my expertise across design and development.</p>
-          </FadeSection>
-
-          <div className="projects-grid">
-            {[
-              { img: "/project-turun.png", title: "TURUN — Running App Gamification", desc: "In this project, I had the opportunity to design a gamified fitness experience for runners.", tag: "Mobile App Design" },
-              { img: "/project-dashboard.png", title: "Daniee — Creative Digital Agency", desc: "I had the opportunity to collaborate with Daniee - an agency that focuses on delivering.", tag: "Web Design" },
-              { img: "/project-ecommerce.png", title: "Bimboo — Online Course App Design", desc: "An online course platform that combines user convenience with appealing aesthetics.", tag: "Mobile App Design" },
-            ].map((p, i) => (
-              <FadeSection key={i} delay={i * 0.1}>
-                <div className="proj-card">
-                  <div className="proj-img">
-                    <Image src={p.img} alt={p.title} width={600} height={450} />
-                  </div>
-                  <div className="proj-body">
-                    <h3 className="proj-title">{p.title}</h3>
-                    <p className="proj-desc">{p.desc}</p>
-                    <div className="proj-tags"><span className="proj-tag">{p.tag}</span></div>
-                  </div>
-                </div>
-              </FadeSection>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ProjectsSection />
 
       {/* ════════ CONTACT & FOOTER WRAPPER ════════ */}
       <div className="relative bg-[#fafcff] overflow-hidden z-0">
