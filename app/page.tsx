@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useEffect, useState, useRef } from "react";
 import { motion, useInView, AnimatePresence } from "motion/react";
 import { projects } from "./data/projects";
-import BlogSection from "../components/BlogSection";
+import TerminalSection from "../components/TerminalSection";
 
 /* ── SVG Icons ─────────────────────────────────────────── */
 const ChevronIcon = () => (
@@ -337,6 +337,13 @@ export default function Home() {
           {navLinks.map((l) => {
             const id = l.toLowerCase();
             const isActive = activeSection === id;
+            if (l === "Blog") {
+              return (
+                <Link key={l} href="/blog" className="nav-link">
+                  <span className="nav-link-label">{l}</span>
+                </Link>
+              );
+            }
             return (
               <a key={l} href={`#${id}`} className={`nav-link ${isActive ? "active" : ""}`}>
                 <span className="nav-link-label">{l}</span>
@@ -358,7 +365,9 @@ export default function Home() {
 
       <div className={`mobile-overlay ${menuOpen ? "open" : ""}`}>
         {navLinks.map((l) => (
-          <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{l}</a>
+          l === "Blog"
+            ? <Link key={l} href="/blog" onClick={() => setMenuOpen(false)}>{l}</Link>
+            : <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)}>{l}</a>
         ))}
       </div>
 
@@ -649,7 +658,6 @@ export default function Home() {
 
       {/* ════════ PROJECTS ════════ */}
       <ProjectsSection />
-      <BlogSection />
 
       {/* ════════ CONTACT & FOOTER WRAPPER ════════ */}
       <div className="relative bg-[#fafcff] overflow-hidden z-0">
@@ -658,126 +666,21 @@ export default function Home() {
         <div className="absolute top-[50%] left-[-5%] w-[500px] h-[500px] bg-[#00e68a]/20 rounded-full mix-blend-multiply filter blur-[120px] -z-10 pointer-events-none animation-blobFloat2"></div>
         <div className="absolute bottom-[5%] right-[-10%] w-[800px] h-[800px] bg-[#38bdf8]/30 rounded-full mix-blend-multiply filter blur-[150px] -z-10 pointer-events-none animation-blobFloat"></div>
 
-        {/* ════════ CONTACT ════════ */}
-        <section className="relative pt-[120px] pb-[140px] z-10" id="contact">
+        {/* ════════ TERMINAL (CONTACT REPLACEMENT) ════════ */}
+        <TerminalSection />
 
-        <FadeSection className="relative z-10 max-w-[1200px] mx-auto px-6 mb-20">
-          {/* Custom internal aurora just for this massive card to ensure glassmorphism works perfectly */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[1000px] h-full max-h-[800px] pointer-events-none -z-10">
-            <div className="absolute top-0 left-10 w-80 h-80 bg-purple-400/15 rounded-full mix-blend-multiply filter blur-[100px]"></div>
-            <div className="absolute bottom-10 right-1/4 w-[500px] h-[500px] bg-[#38bdf8]/15 rounded-full mix-blend-multiply filter blur-[120px]"></div>
-          </div>
-
-          {/* Massive Premium Glass Card */}
-          <div className="relative bg-white/40 backdrop-blur-[40px] saturate-[150%] border border-white/60 shadow-[0_24px_80px_rgba(0,0,0,0.07),inset_0_2px_4px_rgba(255,255,255,0.8)] rounded-[40px] lg:rounded-[48px] overflow-hidden flex flex-col lg:flex-row">
-            
-            {/* Left Side: Info */}
-            <div className="lg:w-2/5 p-10 lg:p-16 bg-white/40 border-b lg:border-b-0 lg:border-r border-white/50 relative overflow-hidden flex flex-col justify-between">
-              <div className="relative z-10">
-                <h2 className="hero-title mb-6">
-                  Let&apos;s talk <br/>
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-dark)] to-[#00b36b]">business.</span>
-                </h2>
-                <p className="text-lg text-[#525252] font-medium leading-relaxed max-w-[95%]">
-                  Whether you have a specific project in mind or just want to explore possibilities, my inbox is always open.
-                </p>
-              </div>
-
-              <div className="relative z-10 flex flex-col mt-12">
-                <p className="text-xs font-black text-[#737373] uppercase tracking-widest mb-4">I can help you with</p>
-                <div className="flex flex-wrap gap-2.5">
-                  <span className="px-4 py-2.5 rounded-full border border-white/80 shadow-sm text-sm font-bold text-[#171717] bg-white/50 hover:-translate-y-0.5 transition-transform cursor-default">Frontend Development</span>
-                  <span className="px-4 py-2.5 rounded-full border border-white/80 shadow-sm text-sm font-bold text-[#171717] bg-white/50 hover:-translate-y-0.5 transition-transform cursor-default">UI/UX Design</span>
-                  <span className="px-4 py-2.5 rounded-full border border-white/80 shadow-sm text-sm font-bold text-[#171717] bg-white/50 hover:-translate-y-0.5 transition-transform cursor-default">Web Applications</span>
-                  <span className="px-4 py-2.5 rounded-full border border-white/80 shadow-sm text-sm font-bold text-[#171717] bg-white/50 hover:-translate-y-0.5 transition-transform cursor-default">Prototyping</span>
-                </div>
-
-                <div className="mt-10 p-5 rounded-3xl bg-white/60 border border-white/80 shadow-sm flex items-start gap-4">
-                  <div className="relative flex h-3 w-3 mt-1.5 shrink-0">
-                    <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--accent)] opacity-75"></span>
-                    <span className="relative inline-flex rounded-full h-3 w-3 bg-[var(--accent)]"></span>
-                  </div>
-                  <div>
-                    <p className="font-extrabold text-[#171717] mb-1">Available for new projects</p>
-                    <p className="text-sm font-medium text-[#525252] leading-relaxed">Let&apos;s discuss your timeline and how we can collaborate effectively.</p>
-                  </div>
-                </div>
-              </div>
-
-              {/* Socials inside left card */}
-              <div className="relative z-10 flex gap-4 mt-12 pt-12 border-t border-black/5">
-                <a href="#" aria-label="Instagram" className="text-[#737373] hover:text-[var(--accent-dark)] transition-colors duration-300"><InstagramIcon /></a>
-                <a href="#" aria-label="Dribbble" className="text-[#737373] hover:text-[var(--accent-dark)] transition-colors duration-300"><DribbbleIcon /></a>
-              </div>
-            </div>
-
-            {/* Right Side: Form */}
-            <div className="lg:w-3/5 p-10 lg:p-16 bg-white/20">
-              <form className="flex flex-col gap-10 h-full justify-center" onSubmit={(e) => e.preventDefault()}>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  <div className="flex flex-col gap-3 relative group">
-                    <label className="text-xs font-black text-[#737373] uppercase tracking-widest">First Name *</label>
-                    <input type="text" placeholder="John" required className="w-full bg-transparent border-b-2 border-black/10 py-2 text-xl font-medium text-[#171717] focus:outline-none focus:border-[var(--accent)] transition-colors placeholder-black/20" />
-                  </div>
-                  <div className="flex flex-col gap-3 relative group">
-                    <label className="text-xs font-black text-[#737373] uppercase tracking-widest">Last Name *</label>
-                    <input type="text" placeholder="Doe" required className="w-full bg-transparent border-b-2 border-black/10 py-2 text-xl font-medium text-[#171717] focus:outline-none focus:border-[var(--accent)] transition-colors placeholder-black/20" />
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  <div className="flex flex-col gap-3 relative group">
-                    <label className="text-xs font-black text-[#737373] uppercase tracking-widest">Contact Number</label>
-                    <input type="text" placeholder="+62" required className="w-full bg-transparent border-b-2 border-black/10 py-2 text-xl font-medium text-[#171717] focus:outline-none focus:border-[var(--accent)] transition-colors placeholder-black/20" />
-                  </div>
-                  <div className="flex flex-col gap-3 relative group">
-                    <label className="text-xs font-black text-[#737373] uppercase tracking-widest">Email Address *</label>
-                    <input type="email" placeholder="john@example.com" required className="w-full bg-transparent border-b-2 border-black/10 py-2 text-xl font-medium text-[#171717] focus:outline-none focus:border-[var(--accent)] transition-colors placeholder-black/20" />
-                  </div>
-                </div>
-
-                <div className="flex flex-col gap-3 relative group">
-                  <label className="text-xs font-black text-[#737373] uppercase tracking-widest">Project Details *</label>
-                  <textarea rows={3} placeholder="Tell me about your brilliant ideas..." required className="w-full bg-transparent border-b-2 border-black/10 py-2 text-xl font-medium text-[#171717] focus:outline-none focus:border-[var(--accent)] transition-colors placeholder-black/20 resize-y"></textarea>
-                </div>
-
-                <div className="mt-6">
-                  <button type="submit" className="group relative inline-flex items-center justify-center gap-3 px-10 py-5 bg-[#171717] text-white font-bold text-lg rounded-full overflow-hidden transition-all duration-300 hover:shadow-[0_20px_40px_rgba(0,230,138,0.3)] hover:-translate-y-1">
-                    <span className="absolute inset-0 w-full h-full bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-out"></span>
-                    <span className="relative z-10 flex items-center gap-3 group-hover:text-[#171717] transition-colors duration-300">
-                      Send Message <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
-                    </span>
-                  </button>
-                </div>
-              </form>
-            </div>
-          </div>
-        </FadeSection>
-      </section>
-
-      <footer className="relative bg-transparent px-6 pt-10 pb-24 flex justify-center z-10 w-full">
-        {/* Giant background text */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[40%] text-[clamp(8rem,20vw,25rem)] font-[800] bg-[linear-gradient(135deg,var(--accent-dark)_0%,#00cfb4_100%)] bg-clip-text text-transparent whitespace-nowrap leading-none tracking-[0.05em] -z-10 select-none pointer-events-none">
-          GALIH
-        </div>
-
-        <div className="w-full max-w-[1200px] relative bg-white/40 backdrop-blur-[40px] saturate-[150%] border border-white/60 shadow-[0_24px_80px_rgba(0,0,0,0.07),inset_0_2px_4px_rgba(255,255,255,0.8)] rounded-[32px] p-10 md:p-16 flex flex-col z-20 overflow-hidden">
-          <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mb-16">
+      <footer className="relative bg-transparent px-6 pt-10 pb-0 flex justify-center z-10 w-full">
+        <div className="w-full max-w-[1200px] relative bg-white/40 backdrop-blur-[40px] saturate-[150%] border border-white/60 border-b-0 shadow-[0_24px_80px_rgba(0,0,0,0.07),inset_0_2px_4px_rgba(255,255,255,0.8)] rounded-t-[32px] md:rounded-t-[48px] rounded-b-none p-10 md:p-16 pb-6 md:pb-8 flex flex-col z-20 overflow-hidden">
+          <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-20 mb-0">
             {/* Left Info */}
             <div className="max-w-[380px]">
               <h2 className="text-2xl font-[800] mb-6 tracking-[-0.02em] flex items-center gap-3">
                 {/* Minimalist Logo mark */}
                 <span className="bg-[linear-gradient(135deg,var(--accent-dark)_0%,#00cfb4_100%)] bg-clip-text text-transparent">Galih Tri Risky Andiko</span>
               </h2>
-              <p className="text-[15px] text-[#525252] leading-[1.6] mb-8">
+              <p className="text-[15px] text-[#525252] leading-[1.6] mb-0">
                 Building digital experiences that combine function with stunning aesthetics. Let&apos;s create something amazing together.
               </p>
-              <div className="flex gap-5">
-                <a href="#" className="text-[#171717] hover:text-[var(--accent-dark)] transition-colors"><InstagramIcon /></a>
-                <a href="#" className="text-[#171717] hover:text-[var(--accent-dark)] transition-colors"><LinkedinIcon /></a>
-                <a href="#" className="text-[#171717] hover:text-[var(--accent-dark)] transition-colors"><GithubIcon /></a>
-                <a href="#" className="text-[#171717] hover:text-[var(--accent-dark)] transition-colors"><DribbbleIcon /></a>
-              </div>
             </div>
 
             {/* Right Links */}
@@ -793,7 +696,7 @@ export default function Home() {
                 <h4 className="text-[15px] font-[700] tracking-[-0.02em] text-[#171717] mb-2">Resources</h4>
                 <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Documentation</a>
                 <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Tutorials</a>
-                <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Blog</a>
+                <Link href="/blog" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Blog</Link>
                 <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Support</a>
               </div>
               <div className="flex flex-col gap-4">
@@ -803,17 +706,6 @@ export default function Home() {
                 <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Contact</a>
                 <a href="#" className="text-[14px] font-medium text-[#737373] hover:text-[var(--accent-dark)] transition-colors">Partners</a>
               </div>
-            </div>
-          </div>
-          
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 pt-8 border-t border-black/5">
-            <p className="text-[14px] font-medium text-[#737373]">
-              © 2026 Galih Tri Risky Andiko. All rights reserved.
-            </p>
-            <div className="flex flex-wrap gap-6">
-              <a href="#" className="text-[13px] font-medium text-[#737373] hover:text-[var(--accent-dark)] underline underline-offset-4 transition-colors">Privacy Policy</a>
-              <a href="#" className="text-[13px] font-medium text-[#737373] hover:text-[var(--accent-dark)] underline underline-offset-4 transition-colors">Terms of Service</a>
-              <a href="#" className="text-[13px] font-medium text-[#737373] hover:text-[var(--accent-dark)] underline underline-offset-4 transition-colors">Cookies Settings</a>
             </div>
           </div>
         </div>

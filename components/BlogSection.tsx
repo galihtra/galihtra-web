@@ -82,10 +82,14 @@ export default function BlogSection() {
       {/* Noise Texture to make glass pop */}
       <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.02]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'4\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\'/%3E%3C/svg%3E")', backgroundSize: '200px 200px' }}></div>
       
-      {/* Aurora Backgrounds - Stronger colors directly behind the grid to create refraction */}
-      <div className="absolute top-[10%] left-[10%] w-[500px] h-[500px] bg-[#00e68a]/20 rounded-full mix-blend-multiply filter blur-[120px] -z-10 pointer-events-none animate-pulse" style={{ animationDuration: '8s' }}></div>
-      <div className="absolute top-[40%] right-[10%] w-[600px] h-[600px] bg-[#38bdf8]/15 rounded-full mix-blend-multiply filter blur-[120px] -z-10 pointer-events-none animate-pulse" style={{ animationDuration: '12s' }}></div>
-      <div className="absolute bottom-[-5%] left-[40%] w-[700px] h-[700px] bg-[#00cfb4]/20 rounded-full mix-blend-multiply filter blur-[140px] -z-10 pointer-events-none animate-pulse" style={{ animationDuration: '10s' }}></div>
+      {/* Aurora Backgrounds - Stronger colors directly behind the grid and sidebar to create refraction */}
+      {/* Behind Main Grid */}
+      <div className="absolute top-[10%] left-[5%] w-[500px] h-[500px] bg-[#00e68a]/20 rounded-full mix-blend-multiply filter blur-[120px] -z-10 pointer-events-none animate-pulse" style={{ animationDuration: '8s' }}></div>
+      <div className="absolute bottom-[-5%] left-[30%] w-[600px] h-[600px] bg-[#00cfb4]/20 rounded-full mix-blend-multiply filter blur-[140px] -z-10 pointer-events-none animate-pulse" style={{ animationDuration: '10s' }}></div>
+      
+      {/* Behind Sidebar (Search & Categories) */}
+      <div className="absolute top-[2%] right-[5%] w-[400px] h-[400px] bg-[#38bdf8]/30 rounded-full mix-blend-multiply filter blur-[100px] -z-10 pointer-events-none animate-pulse" style={{ animationDuration: '11s' }}></div>
+      <div className="absolute top-[25%] right-[-5%] w-[400px] h-[600px] bg-[var(--accent)]/30 rounded-full mix-blend-multiply filter blur-[120px] -z-10 pointer-events-none animate-pulse" style={{ animationDuration: '14s' }}></div>
 
       <div className="relative max-w-[1200px] mx-auto px-6 z-10">
         
@@ -93,7 +97,7 @@ export default function BlogSection() {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-12 gap-6">
           <div className="flex items-center gap-6 text-[#737373] text-sm font-bold">
             <div className="flex gap-2 items-center text-[#171717]">
-              <button className="p-1.5 bg-gradient-to-br from-white/80 to-white/40 backdrop-blur-md border border-white/80 rounded shadow-[0_2px_8px_rgba(0,0,0,0.06)] text-[var(--accent-dark)] hover:from-white hover:to-white transition-all">
+              <button className="p-1.5 bg-white/20 backdrop-blur-md border border-white/60 rounded shadow-[0_2px_8px_rgba(0,0,0,0.06)] text-[var(--accent-dark)] hover:bg-white/40 transition-all">
                 <LayoutGrid size={18} strokeWidth={2.5} />
               </button>
               <button className="p-1.5 hover:bg-white/40 rounded transition-colors text-[#737373]">
@@ -112,7 +116,7 @@ export default function BlogSection() {
             <input 
               type="text" 
               placeholder="SEARCH..." 
-              className="w-full pl-6 pr-14 py-3 bg-gradient-to-r from-white/80 to-white/40 backdrop-blur-[40px] saturate-[200%] border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.06),inset_0_2px_4px_rgba(255,255,255,0.9)] rounded-full text-sm font-bold text-[#171717] outline-none focus:border-[var(--accent)] focus:shadow-[0_8px_32px_rgba(0,230,138,0.15)] transition-all placeholder:text-[#737373] placeholder:tracking-widest"
+              className="w-full pl-6 pr-14 py-3 bg-white/10 backdrop-blur-[30px] saturate-[200%] border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.04),inset_0_2px_8px_rgba(255,255,255,0.8)] rounded-full text-sm font-bold text-[#171717] outline-none focus:border-[var(--accent)] focus:bg-white/20 transition-all placeholder:text-[#737373] placeholder:tracking-widest"
             />
             <button className="absolute right-1 top-1 w-10 h-10 bg-[#171717] text-white rounded-full flex items-center justify-center hover:bg-[var(--accent-dark)] hover:text-white transition-colors shadow-md">
               <Search size={18} strokeWidth={2.5} />
@@ -127,12 +131,12 @@ export default function BlogSection() {
               {blogPosts.map((post) => (
                 <article 
                   key={post.slug} 
-                  className="group cursor-pointer flex flex-col bg-gradient-to-br from-white/70 to-white/20 backdrop-blur-[50px] saturate-[200%] border border-white/70 shadow-[0_12px_40px_rgba(0,0,0,0.06),inset_0_2px_4px_rgba(255,255,255,0.9)] rounded-[32px] p-4 pb-6 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(0,230,138,0.15),inset_0_2px_8px_rgba(255,255,255,1)] hover:border-[var(--accent)]/50 relative"
+                  className="group cursor-pointer flex flex-col bg-white/20 backdrop-blur-[50px] saturate-[200%] border border-white/60 shadow-[0_12px_40px_rgba(0,0,0,0.06),inset_0_2px_8px_rgba(255,255,255,0.8)] rounded-[32px] p-4 pb-6 transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_24px_60px_rgba(0,230,138,0.15),inset_0_2px_8px_rgba(255,255,255,1)] hover:border-[var(--accent)]/50 hover:bg-white/30 relative"
                 >
                   {/* Subtle Shimmer Overlay on hover */}
                   <div className="absolute inset-0 rounded-[32px] bg-gradient-to-tr from-white/0 via-white/40 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
 
-                  <div className="relative w-full aspect-[4/3] rounded-[24px] overflow-hidden mb-5 border border-white/60 shadow-inner">
+                  <div className="relative w-full aspect-[4/3] rounded-[24px] overflow-hidden mb-5 border border-white/40 shadow-inner">
                     <Image
                       src={post.img}
                       alt={post.title}
@@ -163,7 +167,9 @@ export default function BlogSection() {
           <div className="w-full lg:w-[320px] flex flex-col gap-12 pt-2">
             
             {/* Categories */}
-            <div className="bg-gradient-to-br from-white/70 to-white/20 backdrop-blur-[50px] saturate-[200%] border border-white/70 shadow-[0_12px_40px_rgba(0,0,0,0.06),inset_0_2px_4px_rgba(255,255,255,0.9)] rounded-[32px] p-8">
+            <div className="bg-white/10 backdrop-blur-[50px] saturate-[200%] border border-white/50 shadow-[0_12px_40px_rgba(0,0,0,0.06),inset_0_2px_8px_rgba(255,255,255,0.8)] rounded-[32px] p-8 relative">
+              {/* Internal glow to emphasize glass edges */}
+              <div className="absolute inset-0 rounded-[32px] bg-gradient-to-br from-white/20 to-transparent pointer-events-none"></div>
               <h4 className="text-[12px] font-black text-[#737373] uppercase tracking-widest mb-6">All Categories</h4>
               <ul className="flex flex-col gap-5">
                 {categories.map((cat) => {
